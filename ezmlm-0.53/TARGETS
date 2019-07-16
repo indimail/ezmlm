@@ -21,3 +21,15 @@ systype
 find-systype
 make-load
 auto-ccld.sh
+ezmlm-queue.1
+ezmlm-list
+ezmlm-make
+ezmlm-manage
+ezmlm-queue
+ezmlm-reject
+ezmlm-return
+ezmlm-send
+ezmlm-sub
+ezmlm-unsub
+ezmlm-warn
+ezmlm-weed
