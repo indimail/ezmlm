@@ -12,8 +12,8 @@
 %endif
 
 Name: ezmlm
-Version: 0.53
-Release: 1%{?dist}
+Version: @version@
+Release: @release@%{?dist}
 Summary: Easy Mailing List Manager
 Group: Utilities/System
 %if %build_on_obs == 1
