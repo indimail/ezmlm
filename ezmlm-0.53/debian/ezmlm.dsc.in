@@ -1,0 +1,10 @@
+Format: 1.0
+Source: ezmlm
+Binary: ezmlm
+Version: @version@-@release@
+Maintainer: Manvendra Bhangui <manvendra@indimail.org>
+Architecture: any
+Build-Depends: debhelper (>= 4.1.16)
+Debtransform-Files-Tar: debian.tar.gz
+Debtransform-Tar: dummy.tar.gz
+Standards-Version: 3.9.1
