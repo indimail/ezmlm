@@ -1,6 +1,12 @@
 # Don't edit Makefile! Use conf-* for configuration.
 COFLAGS=-z+05:30
 SHELL=/bin/sh
+version=$(shell cat conf-version)
+release=$(shell cat conf-release)
+
+edit = sed \
+	-e 's}@version\@}$(version)}g' \
+	-e 's|@release\@|$(release)|g'
 
 default: it
 all: it
@@ -828,12 +834,15 @@ ezmlm-queue: ezmlm-queue.in conf-prefix conf-sysconfdir warn-auto.sh
 
 ezmlm-queue.0: \
 ezmlm-queue.1
-	nroff -man ezmlm-queue.1 > ezmlm.0
+	nroff -man ezmlm-queue.1 > ezmlm-queue.0
 
 ezmlm-queue.1: ezmlm-queue.9 conf-sysconfdir
 	cat ezmlm-queue.9 \
 	| sed s}SYSCONFDIR}"`head -1 conf-sysconfdir`"}g \
 	> ezmlm-queue.1
+
+ezmlm.spec: ezmlm.spec.in catChangeLog doc/ChangeLog
+	(cat $@.in;./catChangeLog) | $(edit) > $@
 
 clean: TARGETS
 	/bin/rm -f `cat TARGETS`
