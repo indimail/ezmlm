@@ -119,6 +119,7 @@ make %{?_smp_mflags}
 %{_prefix}/share/man/cat1/ezmlm-list.0
 %{_prefix}/share/man/cat1/ezmlm-make.0
 %{_prefix}/share/man/cat1/ezmlm-manage.0
+%{_prefix}/share/man/cat1/ezmlm-queue.0
 %{_prefix}/share/man/cat1/ezmlm-reject.0
 %{_prefix}/share/man/cat1/ezmlm-return.0
 %{_prefix}/share/man/cat1/ezmlm-send.0
@@ -130,6 +131,7 @@ make %{?_smp_mflags}
 %{_prefix}/share/man/man1/ezmlm-list.1.gz
 %{_prefix}/share/man/man1/ezmlm-make.1.gz
 %{_prefix}/share/man/man1/ezmlm-manage.1.gz
+%{_prefix}/share/man/man1/ezmlm-queue.1.gz
 %{_prefix}/share/man/man1/ezmlm-reject.1.gz
 %{_prefix}/share/man/man1/ezmlm-return.1.gz
 %{_prefix}/share/man/man1/ezmlm-send.1.gz
