@@ -10,6 +10,7 @@ c:::644:/man1/:ezmlm-return.1:
 c:::644:/man1/:ezmlm-send.1:
 c:::644:/man1/:ezmlm-sub.1:
 c:::644:/man1/:ezmlm-unsub.1:
+c:::644:/man1/:ezmlm-queue.1:
 c:::644:/man1/:ezmlm-warn.1:
 c:::644:/man1/:ezmlm-weed.1:
 d:::755:/cat1::
@@ -23,5 +24,6 @@ c:::644:/cat1/:ezmlm-return.0:
 c:::644:/cat1/:ezmlm-send.0:
 c:::644:/cat1/:ezmlm-sub.0:
 c:::644:/cat1/:ezmlm-unsub.0:
+c:::644:/cat1/:ezmlm-queue.0:
 c:::644:/cat1/:ezmlm-warn.0:
 c:::644:/cat1/:ezmlm-weed.0:
