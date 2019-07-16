@@ -5,10 +5,6 @@ SHELL=/bin/sh
 default: it
 all: it
 
-alloc.0: \
-alloc.3
-	nroff -man alloc.3 > alloc.0
-
 alloc.a: \
 makelib alloc.o alloc_re.o
 	./makelib alloc.a alloc.o alloc_re.o
@@ -77,10 +73,6 @@ byte_zero.o: \
 compile byte_zero.c byte.h byte_zero.c
 	./compile byte_zero.c
 
-case.0: \
-case.3
-	nroff -man case.3 > case.0
-
 case.a: \
 makelib case_diffb.o case_lowerb.o case_startb.o
 	./makelib case.a case_diffb.o case_lowerb.o case_startb.o
@@ -118,27 +110,15 @@ compile date822fmt.c datetime.h date822fmt.c fmt.h date822fmt.c \
 date822fmt.h date822fmt.c
 	./compile date822fmt.c
 
-datetime.0: \
-datetime.3
-	nroff -man datetime.3 > datetime.0
-
 datetime.o: \
 compile datetime.c datetime.h datetime.c
 	./compile datetime.c
-
-direntry.0: \
-direntry.3
-	nroff -man direntry.3 > direntry.0
 
 direntry.h: \
 compile trydrent.c direntry.h1 direntry.h2
 	( ./compile trydrent.c >/dev/null 2>&1 \
 	&& cat direntry.h2 || cat direntry.h1 ) > direntry.h
 	rm -f trydrent.o
-
-env.0: \
-env.3
-	nroff -man env.3 > env.0
 
 env.a: \
 makelib envread.o
@@ -148,10 +128,6 @@ envread.o: \
 compile envread.c env.h envread.c str.h envread.c
 	./compile envread.c
 
-error.0: \
-error.3
-	nroff -man error.3 > error.0
-
 error.a: \
 makelib error.o error_str.o
 	./makelib error.a error.o error_str.o
@@ -160,17 +136,9 @@ error.o: \
 compile error.c error.c error.h error.c
 	./compile error.c
 
-error_str.0: \
-error_str.3
-	nroff -man error_str.3 > error_str.0
-
 error_str.o: \
 compile error_str.c error_str.c error.h error_str.c
 	./compile error_str.c
-
-error_temp.0: \
-error_temp.3
-	nroff -man error_temp.3 > error_temp.0
 
 ezmlm-list: \
 load ezmlm-list.o strerr.a getln.a substdio.a stralloc.a alloc.a \
@@ -388,17 +356,9 @@ fd.a: \
 makelib fd_copy.o fd_move.o
 	./makelib fd.a fd_copy.o fd_move.o
 
-fd_copy.0: \
-fd_copy.3
-	nroff -man fd_copy.3 > fd_copy.0
-
 fd_copy.o: \
 compile fd_copy.c fd_copy.c fd.h fd_copy.c
 	./compile fd_copy.c
-
-fd_move.0: \
-fd_move.3
-	nroff -man fd_move.3 > fd_move.0
 
 fd_move.o: \
 compile fd_move.c fd.h fd_move.c
@@ -443,10 +403,6 @@ compile getconf.c stralloc.h gen_alloc.h stralloc.h getconf.c slurp.h \
 byte.h getconf.c strerr.h getconf.c getconf.h getconf.c
 	./compile getconf.c
 
-getln.0: \
-getln.3
-	nroff -man getln.3 > getln.0
-
 getln.a: \
 makelib getln.o getln2.o
 	./makelib getln.a getln.o getln2.o
@@ -456,18 +412,10 @@ compile getln.c substdio.h getln.c byte.h getln.c stralloc.h \
 gen_alloc.h stralloc.h getln.c getln.h getln.c
 	./compile getln.c
 
-getln2.0: \
-getln2.3
-	nroff -man getln2.3 > getln2.0
-
 getln2.o: \
 compile getln2.c substdio.h getln2.c stralloc.h gen_alloc.h \
 stralloc.h getln2.c byte.h getln2.c getln.h getln2.c
 	./compile getln2.c
-
-getopt.0: \
-getopt.3
-	nroff -man getopt.3 > getopt.0
 
 getopt.a: \
 makelib subgetopt.o sgetopt.o
@@ -555,14 +503,7 @@ make-makelib warn-auto.sh systype
 man: \
 ezmlm.0 ezmlm-make.0 ezmlm-manage.0 ezmlm-send.0 ezmlm-reject.0 \
 ezmlm-return.0 ezmlm-warn.0 ezmlm-weed.0 ezmlm-list.0 ezmlm-sub.0 \
-ezmlm-unsub.0 alloc.0 case.0 datetime.0 direntry.0 env.0 error.0 \
-error_str.0 error_temp.0 ezmlm.0 fd_copy.0 fd_move.0 getln.0 getln2.0 \
-getopt.0 now.0 sgetopt.0 stralloc.0 subfd.0 subgetopt.0 substdio.0 \
-substdio_copy.0 substdio_in.0 substdio_out.0 surf.0 surfpcs.0 wait.0
-
-now.0: \
-now.3
-	nroff -man now.3 > now.0
+ezmlm-unsub.0 ezmlm.0 surf.0 surfpcs.0 ezmlm-queue.0
 
 now.o: \
 compile now.c now.c datetime.h now.c now.h datetime.h datetime.h \
@@ -619,10 +560,6 @@ it man install conf-bin conf-man
 	./install $(DESTDIR)"`head -1 conf-bin`" < BIN
 	mkdir -p $(DESTDIR)"`head -n 1 conf-man`"
 	./install $(DESTDIR)"`head -1 conf-man`" < MAN
-
-sgetopt.0: \
-sgetopt.3
-	nroff -man sgetopt.3 > sgetopt.0
 
 sgetopt.o: \
 compile sgetopt.c substdio.h sgetopt.c subfd.h substdio.h substdio.h \
@@ -727,10 +664,6 @@ str_start.o: \
 compile str_start.c str.h str_start.c
 	./compile str_start.c
 
-stralloc.0: \
-stralloc.3
-	nroff -man stralloc.3 > stralloc.0
-
 stralloc.a: \
 makelib stralloc_eady.o stralloc_pend.o stralloc_copy.o \
 stralloc_opys.o stralloc_opyb.o stralloc_cat.o stralloc_cats.o \
@@ -806,18 +739,10 @@ strerr_sys.o: \
 compile strerr_sys.c error.h strerr_sys.c strerr.h strerr_sys.c
 	./compile strerr_sys.c
 
-subfd.0: \
-subfd.3
-	nroff -man subfd.3 > subfd.0
-
 subfderr.o: \
 compile subfderr.c readwrite.h subfderr.c substdio.h subfderr.c \
 subfd.h substdio.h substdio.h subfd.h subfderr.c
 	./compile subfderr.c
-
-subgetopt.0: \
-subgetopt.3
-	nroff -man subgetopt.3 > subgetopt.0
 
 subgetopt.o: \
 compile subgetopt.c subgetopt.h subgetopt.h subgetopt.c
@@ -836,10 +761,6 @@ compile substdi.c substdio.h substdi.c byte.h substdi.c error.h \
 substdi.c
 	./compile substdi.c
 
-substdio.0: \
-substdio.3
-	nroff -man substdio.3 > substdio.0
-
 substdio.a: \
 makelib substdio.o substdi.o substdo.o subfderr.o substdio_copy.o
 	./makelib substdio.a substdio.o substdi.o substdo.o \
@@ -849,21 +770,9 @@ substdio.o: \
 compile substdio.c substdio.h substdio.c
 	./compile substdio.c
 
-substdio_copy.0: \
-substdio_copy.3
-	nroff -man substdio_copy.3 > substdio_copy.0
-
 substdio_copy.o: \
 compile substdio_copy.c substdio.h substdio_copy.c
 	./compile substdio_copy.c
-
-substdio_in.0: \
-substdio_in.3
-	nroff -man substdio_in.3 > substdio_in.0
-
-substdio_out.0: \
-substdio_out.3
-	nroff -man substdio_out.3 > substdio_out.0
 
 substdo.o: \
 compile substdo.c substdio.h substdo.c str.h substdo.c byte.h \
@@ -902,10 +811,6 @@ tryulong32.c compile load uint32.h1 uint32.h2
 	&& cat uint32.h2 || cat uint32.h1 ) > uint32.h
 	rm -f tryulong32.o tryulong32
 
-wait.0: \
-wait.3
-	nroff -man wait.3 > wait.0
-
 wait.a: \
 makelib wait_pid.o
 	./makelib wait.a wait_pid.o
@@ -920,6 +825,15 @@ ezmlm-queue: ezmlm-queue.in conf-prefix conf-sysconfdir warn-auto.sh
 	| sed s}SYSCONFDIR}"`head -1 conf-sysconfdir`"}g \
 	> ezmlm-queue
 	chmod 755 ezmlm-queue
+
+ezmlm-queue.0: \
+ezmlm-queue.1
+	nroff -man ezmlm-queue.1 > ezmlm.0
+
+ezmlm-queue.1: ezmlm-queue.9 conf-sysconfdir
+	cat ezmlm-queue.9 \
+	| sed s}SYSCONFDIR}"`head -1 conf-sysconfdir`"}g \
+	> ezmlm-queue.1
 
 clean: TARGETS
 	/bin/rm -f `cat TARGETS`
