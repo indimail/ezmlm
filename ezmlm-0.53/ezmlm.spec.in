@@ -25,23 +25,14 @@ Source0: http://ezmlm.org/archive/%{version}/%{name}-%{version}.tar.gz
 URL: http://www.ezmlm.org
 
 ##################################### OBS ####################################
-%if %build_on_obs == 1
-%if 0%{?rhel_version} == 700
-BuildRequires: groff-base
-%else
-BuildRequires: groff
-%endif
-
 %if 0%{?suse_version}
 BuildRequires: -post-build-checks  
 #!BuildIgnore: post-build-checks  
 %endif
 ##############################################################################
-%else
-BuildRequires: groff
-%endif
 Requires: rpm >= 3.0.2
 Requires: indimail-mta >= 2.0
+Conflicts: ezmlm-idx
 Buildroot: %{_tmppath}/%{name}-%{version}-root
 
 %description
@@ -108,7 +99,6 @@ make %{?_smp_mflags}
 %{_prefix}/bin/ezmlm-list
 %{_prefix}/bin/ezmlm-make
 %{_prefix}/bin/ezmlm-manage
-%{_prefix}/bin/ezmlm-queue
 %{_prefix}/bin/ezmlm-reject
 %{_prefix}/bin/ezmlm-return
 %{_prefix}/bin/ezmlm-send
@@ -116,18 +106,7 @@ make %{?_smp_mflags}
 %{_prefix}/bin/ezmlm-unsub
 %{_prefix}/bin/ezmlm-warn
 %{_prefix}/bin/ezmlm-weed
-%{_prefix}/share/man/cat1/ezmlm-list.0
-%{_prefix}/share/man/cat1/ezmlm-make.0
-%{_prefix}/share/man/cat1/ezmlm-manage.0
-%{_prefix}/share/man/cat1/ezmlm-queue.0
-%{_prefix}/share/man/cat1/ezmlm-reject.0
-%{_prefix}/share/man/cat1/ezmlm-return.0
-%{_prefix}/share/man/cat1/ezmlm-send.0
-%{_prefix}/share/man/cat1/ezmlm-sub.0
-%{_prefix}/share/man/cat1/ezmlm-unsub.0
-%{_prefix}/share/man/cat1/ezmlm-warn.0
-%{_prefix}/share/man/cat1/ezmlm-weed.0
-%{_prefix}/share/man/cat5/ezmlm.0
+%{_prefix}/sbin/ezmlm-queue
 %{_prefix}/share/man/man1/ezmlm-list.1.gz
 %{_prefix}/share/man/man1/ezmlm-make.1.gz
 %{_prefix}/share/man/man1/ezmlm-manage.1.gz

@@ -10,6 +10,7 @@ Package: ezmlm
 Architecture: any
 Depends: ${shlibs:Depends}
 Pre-Depends: indimail-mta (>= 2.0 )
+Conflicts: ezmlm-idx
 Description: Easy Mailing List Manager for qmail
  .
  ezmlm lets users set up their own mailing lists within qmail's address

@@ -8,7 +8,7 @@ edit = sed \
 	-e 's}@version\@}$(version)}g' \
 	-e 's|@release\@|$(release)|g'
 
-default: it
+default: it ezmlm.spec ezmlm-queue.1
 all: it
 
 alloc.a: \
@@ -152,10 +152,6 @@ error.a open.a str.a
 	./load ezmlm-list strerr.a getln.a substdio.a stralloc.a \
 	alloc.a error.a open.a str.a 
 
-ezmlm-list.0: \
-ezmlm-list.1
-	nroff -man ezmlm-list.1 > ezmlm-list.0
-
 ezmlm-list.o: \
 compile ezmlm-list.c stralloc.h gen_alloc.h stralloc.h ezmlm-list.c \
 substdio.h ezmlm-list.c getln.h ezmlm-list.c strerr.h ezmlm-list.c \
@@ -168,10 +164,6 @@ load ezmlm-make.o auto_bin.o open.a getopt.a substdio.a strerr.a \
 stralloc.a alloc.a error.a str.a
 	./load ezmlm-make auto_bin.o open.a getopt.a substdio.a \
 	strerr.a stralloc.a alloc.a error.a str.a 
-
-ezmlm-make.0: \
-ezmlm-make.1
-	nroff -man ezmlm-make.1 > ezmlm-make.0
 
 ezmlm-make.o: \
 compile ezmlm-make.c ezmlm-make.c ezmlm-make.c sgetopt.h subgetopt.h \
@@ -193,10 +185,6 @@ error.a str.a fs.a case.a open.a seek.a wait.a lock.a fd.a
 	substdio.a stralloc.a alloc.a error.a str.a fs.a case.a \
 	open.a seek.a wait.a lock.a fd.a 
 
-ezmlm-manage.0: \
-ezmlm-manage.1
-	nroff -man ezmlm-manage.1 > ezmlm-manage.0
-
 ezmlm-manage.o: \
 compile ezmlm-manage.c ezmlm-manage.c ezmlm-manage.c error.h \
 ezmlm-manage.c stralloc.h gen_alloc.h stralloc.h ezmlm-manage.c str.h \
@@ -217,10 +205,6 @@ alloc.a str.a getopt.a case.a
 	./load ezmlm-reject getln.a strerr.a substdio.a error.a \
 	stralloc.a alloc.a str.a getopt.a case.a 
 
-ezmlm-reject.0: \
-ezmlm-reject.1
-	nroff -man ezmlm-reject.1 > ezmlm-reject.0
-
 ezmlm-reject.o: \
 compile ezmlm-reject.c strerr.h ezmlm-reject.c substdio.h \
 ezmlm-reject.c readwrite.h ezmlm-reject.c stralloc.h gen_alloc.h \
@@ -237,10 +221,6 @@ case.a open.a
 	log.o slurpclose.o slurp.o now.o cookie.o surf.a lock.a \
 	env.a sig.a strerr.a getln.a substdio.a stralloc.a alloc.a \
 	error.a str.a fs.a case.a open.a 
-
-ezmlm-return.0: \
-ezmlm-return.1
-	nroff -man ezmlm-return.1 > ezmlm-return.0
 
 ezmlm-return.o: \
 compile ezmlm-return.c stralloc.h gen_alloc.h stralloc.h \
@@ -264,10 +244,6 @@ substdio.a stralloc.a alloc.a error.a str.a fd.a case.a fs.a
 	sig.a env.a open.a lock.a substdio.a stralloc.a alloc.a \
 	error.a str.a fd.a case.a fs.a 
 
-ezmlm-send.0: \
-ezmlm-send.1
-	nroff -man ezmlm-send.1 > ezmlm-send.0
-
 ezmlm-send.o: \
 compile ezmlm-send.c stralloc.h gen_alloc.h stralloc.h ezmlm-send.c \
 subfd.h substdio.h subfd.h ezmlm-send.c strerr.h ezmlm-send.c error.h \
@@ -286,10 +262,6 @@ substdio.a stralloc.a alloc.a error.a str.a case.a open.a lock.a
 	getln.a substdio.a stralloc.a alloc.a error.a str.a case.a \
 	open.a lock.a 
 
-ezmlm-sub.0: \
-ezmlm-sub.1
-	nroff -man ezmlm-sub.1 > ezmlm-sub.0
-
 ezmlm-sub.o: \
 compile ezmlm-sub.c strerr.h ezmlm-sub.c subscribe.h strerr.h \
 strerr.h subscribe.h ezmlm-sub.c log.h ezmlm-sub.c
@@ -301,10 +273,6 @@ substdio.a stralloc.a alloc.a error.a str.a case.a open.a lock.a
 	./load ezmlm-unsub subscribe.o log.o now.o fs.a strerr.a \
 	getln.a substdio.a stralloc.a alloc.a error.a str.a case.a \
 	open.a lock.a 
-
-ezmlm-unsub.0: \
-ezmlm-unsub.1
-	nroff -man ezmlm-unsub.1 > ezmlm-unsub.0
 
 ezmlm-unsub.o: \
 compile ezmlm-unsub.c strerr.h ezmlm-unsub.c subscribe.h strerr.h \
@@ -321,10 +289,6 @@ open.a lock.a str.a fs.a fd.a wait.a
 	qmail.o surf.a case.a strerr.a sig.a getln.a substdio.a \
 	stralloc.a alloc.a error.a open.a lock.a str.a fs.a fd.a \
 	wait.a 
-
-ezmlm-warn.0: \
-ezmlm-warn.1
-	nroff -man ezmlm-warn.1 > ezmlm-warn.0
 
 ezmlm-warn.o: \
 compile ezmlm-warn.c ezmlm-warn.c ezmlm-warn.c direntry.h direntry.h \
@@ -344,19 +308,11 @@ alloc.a str.a
 	./load ezmlm-weed getln.a strerr.a substdio.a error.a \
 	stralloc.a alloc.a str.a 
 
-ezmlm-weed.0: \
-ezmlm-weed.1
-	nroff -man ezmlm-weed.1 > ezmlm-weed.0
-
 ezmlm-weed.o: \
 compile ezmlm-weed.c stralloc.h gen_alloc.h stralloc.h ezmlm-weed.c \
 str.h ezmlm-weed.c byte.h ezmlm-weed.c readwrite.h ezmlm-weed.c \
 substdio.h ezmlm-weed.c getln.h ezmlm-weed.c strerr.h ezmlm-weed.c
 	./compile ezmlm-weed.c
-
-ezmlm.0: \
-ezmlm.5
-	nroff -man ezmlm.5 > ezmlm.0
 
 fd.a: \
 makelib fd_copy.o fd_move.o
@@ -506,11 +462,6 @@ make-makelib warn-auto.sh systype
 	makelib
 	chmod 755 makelib
 
-man: \
-ezmlm.0 ezmlm-make.0 ezmlm-manage.0 ezmlm-send.0 ezmlm-reject.0 \
-ezmlm-return.0 ezmlm-warn.0 ezmlm-weed.0 ezmlm-list.0 ezmlm-sub.0 \
-ezmlm-unsub.0 ezmlm.0 surf.0 surfpcs.0 ezmlm-queue.0
-
 now.o: \
 compile now.c now.c datetime.h now.c now.h datetime.h datetime.h \
 now.h now.c
@@ -561,9 +512,11 @@ compile seek_set.c seek_set.c seek.h seek_set.c
 	./compile seek_set.c
 
 setup: \
-it man install conf-bin conf-man
+it install conf-bin conf-man
 	mkdir -p $(DESTDIR)"`head -n 1 conf-bin`"
 	./install $(DESTDIR)"`head -1 conf-bin`" < BIN
+	mkdir -p $(DESTDIR)"`head -n 1 conf-sbin`"
+	./install $(DESTDIR)"`head -1 conf-sbin`" < SBIN
 	mkdir -p $(DESTDIR)"`head -n 1 conf-man`"
 	./install $(DESTDIR)"`head -1 conf-man`" < MAN
 
@@ -785,10 +738,6 @@ compile substdo.c substdio.h substdo.c str.h substdo.c byte.h \
 substdo.c error.h substdo.c
 	./compile substdo.c
 
-surf.0: \
-surf.3
-	nroff -man surf.3 > surf.0
-
 surf.a: \
 makelib surf.o surfpcs.o
 	./makelib surf.a surf.o surfpcs.o
@@ -796,10 +745,6 @@ makelib surf.o surfpcs.o
 surf.o: \
 compile surf.c surf.h surf.c uint32.h surf.c
 	./compile surf.c
-
-surfpcs.0: \
-surfpcs.3
-	nroff -man surfpcs.3 > surfpcs.0
 
 surfpcs.o: \
 compile surfpcs.c surf.h surfpcs.c surfpcs.h uint32.h surfpcs.h \
@@ -831,10 +776,6 @@ ezmlm-queue: ezmlm-queue.in conf-prefix conf-sysconfdir warn-auto.sh
 	| sed s}SYSCONFDIR}"`head -1 conf-sysconfdir`"}g \
 	> ezmlm-queue
 	chmod 755 ezmlm-queue
-
-ezmlm-queue.0: \
-ezmlm-queue.1
-	nroff -man ezmlm-queue.1 > ezmlm-queue.0
 
 ezmlm-queue.1: ezmlm-queue.9 conf-sysconfdir
 	cat ezmlm-queue.9 \

@@ -7,7 +7,7 @@
 #include "qmail.h"
 #include "auto_qmail.h"
 
-static char *binqqargs[2] = { "bin/ezmlm-queue", 0 } ;
+static char *binqqargs[2] = { "sbin/ezmlm-queue", 0 } ;
 
 int qmail_open(qq)
 struct qmail *qq;
