@@ -785,5 +785,7 @@ ezmlm-queue.1: ezmlm-queue.9 conf-sysconfdir
 ezmlm.spec: ezmlm.spec.in catChangeLog doc/ChangeLog
 	(cat $@.in;./catChangeLog) | $(edit) > $@
 
+distclean: clean
+
 clean: TARGETS
 	/bin/rm -f `cat TARGETS`
