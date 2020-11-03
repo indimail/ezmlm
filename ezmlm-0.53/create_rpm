@@ -124,7 +124,7 @@ do
 			--exclude="ezmlm-$version/.git" \
 			--exclude="ezmlm-$version/debian" \
 			--exclude="ezmlm-$version/RCS" \
-			-cvf - ezmlm-"$version" \
+			-cf - ezmlm-"$version" \
 			| gzip -c > $rpmbuild/SOURCES/ezmlm-"$version".tar.gz
 		SRC="$rpmbuild/SOURCES/ezmlm-"$version".tar.gz $SRC"
 		cd ..
