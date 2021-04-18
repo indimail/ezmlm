@@ -1,5 +1,5 @@
+#include <unistd.h>
 #include "substdio.h"
-#include "readwrite.h"
 #include "stralloc.h"
 #include "log.h"
 #include "now.h"

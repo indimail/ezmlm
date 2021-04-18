@@ -1,3 +1,4 @@
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include "error.h"
@@ -14,7 +15,6 @@
 #include "case.h"
 #include "substdio.h"
 #include "qmail.h"
-#include "readwrite.h"
 #include "seek.h"
 #include "quote.h"
 #include "datetime.h"
