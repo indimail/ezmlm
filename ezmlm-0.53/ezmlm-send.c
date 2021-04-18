@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include "stralloc.h"
@@ -16,13 +16,13 @@
 #include "scan.h"
 #include "str.h"
 #include "fmt.h"
-#include "readwrite.h"
-#include "exit.h"
 #include "substdio.h"
 #include "getconf.h"
 #include "constmap.h"
 
 #define FATAL "ezmlm-send: fatal: "
+
+int rename(const char *oldpath, const char *newpath);
 
 void die_usage()
 {
@@ -60,7 +60,7 @@ char inbuf[1024];
 substdio ssout;
 char outbuf[1];
 
-int mywrite(fd,buf,len)
+ssize_t mywrite(fd,buf,len)
 int fd;
 char *buf;
 unsigned int len;

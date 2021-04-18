@@ -1,3 +1,4 @@
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include "direntry.h"
@@ -6,7 +7,6 @@
 #include "scan.h"
 #include "issub.h"
 #include "quote.h"
-#include "readwrite.h"
 #include "getln.h"
 #include "substdio.h"
 #include "stralloc.h"

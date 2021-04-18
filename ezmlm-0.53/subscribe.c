@@ -1,7 +1,6 @@
-#include <stdio.h>
+#include <unistd.h>
 #include "stralloc.h"
 #include "getln.h"
-#include "readwrite.h"
 #include "substdio.h"
 #include "strerr.h"
 #include "open.h"
@@ -12,6 +11,8 @@
 #include "error.h"
 #include "uint32.h"
 #include "subscribe.h"
+
+int rename(const char *oldpath, const char *newpath);
 
 static stralloc addr = {0};
 static stralloc line = {0};

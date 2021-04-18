@@ -1,11 +1,10 @@
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include "substdio.h"
 #include "scan.h"
 #include "stralloc.h"
 #include "getln.h"
-#include "readwrite.h"
-#include "exit.h"
 #include "open.h"
 #include "error.h"
 #include "strerr.h"

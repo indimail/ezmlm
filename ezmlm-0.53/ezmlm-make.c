@@ -5,8 +5,6 @@
 #include "sgetopt.h"
 #include "stralloc.h"
 #include "strerr.h"
-#include "exit.h"
-#include "readwrite.h"
 #include "open.h"
 #include "substdio.h"
 #include "str.h"

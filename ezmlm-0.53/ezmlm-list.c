@@ -1,11 +1,10 @@
+#include <unistd.h>
 #include "stralloc.h"
 #include "substdio.h"
 #include "getln.h"
 #include "str.h"
 #include "strerr.h"
 #include "error.h"
-#include "readwrite.h"
-#include "exit.h"
 #include "open.h"
 
 #define FATAL "ezmlm-list: fatal: "

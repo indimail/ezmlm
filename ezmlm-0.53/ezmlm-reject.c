@@ -1,7 +1,7 @@
+#include <unistd.h>
 #include "strerr.h"
 #include "case.h"
 #include "substdio.h"
-#include "readwrite.h"
 #include "stralloc.h"
 #include "getln.h"
 #include "sgetopt.h"

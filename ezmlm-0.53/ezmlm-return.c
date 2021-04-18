@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include "stralloc.h"
@@ -19,7 +19,6 @@
 #include "substdio.h"
 #include "error.h"
 #include "quote.h"
-#include "readwrite.h"
 #include "fmt.h"
 #include "now.h"
 #include "cookie.h"
@@ -27,6 +26,7 @@
 #include "issub.h"
 
 #define FATAL "ezmlm-return: fatal: "
+int rename(const char *oldpath, const char *newpath);
 void die_usage() { strerr_die1x(100,"ezmlm-return: usage: ezmlm-return dir"); }
 void die_nomem() { strerr_die2x(111,FATAL,"out of memory"); }
 void die_badaddr()

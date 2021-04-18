@@ -1,6 +1,6 @@
+#include <unistd.h>
 #include "stralloc.h"
 #include "getln.h"
-#include "readwrite.h"
 #include "substdio.h"
 #include "open.h"
 #include "byte.h"
