@@ -43,8 +43,6 @@ int flagbw = 0;
 
 void main()
 {
-  int match;
-
   for (;;) {
     get(&line);
     if (line.len == 1) break;
