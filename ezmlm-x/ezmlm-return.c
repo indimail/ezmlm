@@ -46,7 +46,6 @@ substdio ssin;
 char strnum[FMT_ULONG];
 char hash[COOKIE];
 char hashcopy[COOKIE];
-unsigned long cookiedate;
 stralloc fndate = {0};
 stralloc fndatenew = {0};
 stralloc fnhash = {0};

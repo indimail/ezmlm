@@ -63,20 +63,20 @@ substdio ssqq = SUBSTDIO_FDBUF(qqwrite,-1,qqbuf,sizeof(qqbuf));
 struct datetime dt;
 char date[DATE822FMT];
 
-void copy(fn)
-char *fn;
+void copy(filename)
+char *filename;
 {
   int fd;
   int match;
 
-  fd = open_read(fn);
+  fd = open_read(filename);
   if (fd == -1)
-    strerr_die4sys(111,FATAL,"unable to open ",fn,": ");
+    strerr_die4sys(111,FATAL,"unable to open ",filename,": ");
 
   substdio_fdbuf(&sstext,read,fd,textbuf,sizeof(textbuf));
   for (;;) {
     if (getln(&sstext,&line,&match,'\n') == -1)
-      strerr_die4sys(111,FATAL,"unable to read ",fn,": ");
+      strerr_die4sys(111,FATAL,"unable to read ",filename,": ");
     if (!match)
       break;
     qmail_put(&qq,line.s,line.len);
