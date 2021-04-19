@@ -46,16 +46,16 @@ For Darwin (Mac OSX), install [MacPorts](https://www.macports.org/) or brew. You
 
 ```
 FreeBSD
-# pkg install automake autoconf libtool pkgconf mysql80-server mysql80-client
+# pkg install automake autoconf libtool pkgconf
 
 Darwin
-# port install autoconf libtool automake pkgconfig openssl mysql
+# port install autoconf libtool automake pkgconfig openssl
 # port update outdated
 
 Arch Linux
 # pacman -S --refresh --sysupgrade
 # pacman -S --needed archlinux-keyring
-# pacman -S base-devel diffutils coreutils openssl mysql
+# pacman -S base-devel diffutils coreutils openssl
 
 Gentoo Linux
 # emaint -a sync
