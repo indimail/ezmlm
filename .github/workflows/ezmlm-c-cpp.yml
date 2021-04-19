@@ -1,0 +1,48 @@
+name: ezmlm Ubuntu, Mac OSX CI
+
+on:
+  push:
+    paths:
+      - '**/ezmlm-x/**'
+      - .github/workflows/ezmlm-c-cpp.yml
+      - '!**/ezmlm-x/debian/*'
+      - '!**/ezmlm-x/ezmlm.spec.in'
+      - '!**/doc/*'
+      - '!**.md'
+      - '!**/ezmlm-freebsd.yml'
+      - '!**/ezmlm-obs.yml'
+
+jobs:
+  build:
+    name: ${{ matrix.host }}-${{ matrix.config.name }}
+    runs-on: ${{ matrix.host }}
+    strategy:
+      fail-fast: false
+      matrix:
+        host: [ubuntu-latest, macos-latest]
+    
+    steps:
+    - name: extra_packages
+      run: if [ "${OS}" = "macos-latest" ]; then brew install automake autoconf libtool pkgconfig openssl mysql; fi
+      env:
+        OS: ${{ matrix.host }}
+
+    - name: checkout_main
+      uses: actions/checkout@v2
+      with:
+        path: ezmlm
+      
+    - name: checkout_qmail
+      uses: actions/checkout@v2
+      with:
+        repository: mbhangui/libqmail
+        path: libqmail
+
+    - name: install_qmail
+      run: cd libqmail;env CPPFLAGS="-I/usr/local/opt/openssl@1.1/include" LDFLAGS="-L/usr/local/opt/openssl@1.1/lib" ./default.configure; env CPPFLAGS="-I/usr/local/opt/openssl@1.1/include" LDFLAGS="-L/usr/local/opt/openssl@1.1/lib" make; sudo make install-strip
+    - name: build_ezmlm
+      run: |
+        cd ezmlm/ezmlm-x
+        ./default.configure; ./qmake
+      env:
+        OS: ${{ matrix.host }}

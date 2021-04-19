@@ -1,0 +1,185 @@
+#!/bin/sh
+#
+# This script prepares artifacts that can be downloaded for openSUSE build service
+# It creates name.tar.gz, debian.tar.gz, name.spec name.changes and PKGBUILD
+#
+set -e
+if [ $# -ne 1 ] ; then
+  echo "USAGE: prepare_obs name" 1>&2
+  exit 1
+fi
+name=$1
+curdir=$PWD
+version=$(cat conf-version)
+stage=$HOME/stage
+mkdir -p $stage
+meta_pkg=0
+if [ ! -f conf-release ] ; then
+    echo 1.1 > conf-release
+fi
+if [ -f $name.packages ] ; then
+    meta_pkg=1
+    for dir in `cat $name.packages`
+    do
+      real_dir=$(basename $dir)
+      echo $dir|grep "/" >/dev/null
+      if [ $? -eq 0 ] ; then
+        pkg_name=$(basename $dir|sed -e 's{-x{{g')
+      else
+        pkg_name=$(echo $dir|sed -e 's{-x{{g')
+      fi
+      if [ -d $dir ] ; then
+        cd $dir
+      else
+        echo "$dir: No such file or directory" 1>&2
+        exit 1
+      fi
+      ver=$(cat conf-version)
+      if [ -z "$ver" ] ; then
+        echo "no version found for package $pkg_name" 1>&2
+        exit 1
+      fi
+      echo Preparing $pkg_name-$ver
+      cp -rpf . $stage/$pkg_name-$ver
+      cd $stage/$pkg_name-$ver
+      if [ -f default.configure -a ! -f ./configure -o ! -f ./Makefile ] ; then
+        echo reconfiguring $pkg_name-$ver
+        ./default.configure >/dev/null 2>&1
+      fi
+      if [ -f Makefile ] ; then
+        echo cleaning $pkg_name-$ver
+        make clean >/dev/null 2>&1
+        find . -type d \( -name autom4te.cache -o -name .deps \) -exec /bin/rm -rf {} +
+      fi
+      # remove debian directory from archive
+      #/bin/rm -rf debian .git RCS
+      cd ..
+      echo "creating archive $pkg_name-$ver.tar.gz"
+      tar cfz $pkg_name-$ver.tar.gz $pkg_name-$ver
+      if [ ! "$real_dir" = "$pkg_name" -a ! -L $real_dir ] ; then
+        ln -sr $pkg_name-$ver $real_dir
+      fi
+      cd $curdir
+    done
+fi
+echo "Preparing $name-$version"
+cp -rp . $stage/$name-$version
+if [ -L $stage/$name-$version/catChangeLog ] ; then
+  /bin/rm -f $stage/$name-$version/catChangeLog
+  cp catChangeLog $stage/$name-$version # for spec file, changes, debian/changelog to get built
+fi
+cd $stage/$name-$version
+if [ -f default.configure -a ! -f ./configure -o ! -f ./Makefile ] ; then
+  echo reconfiguring $name-$version
+  ./default.configure >/dev/null 2>&1
+fi
+
+if [ ! -f $name.changes ] ; then
+  make $name.changes
+fi
+if [ ! -f $name.changes ] ; then
+  # This will build the $name.changes file
+  ./catChangeLog --changes > $name.changes
+fi
+
+# now build the spec, PKGBUILD and dsc files
+
+# rpm distributions
+if [ -f $name.spec.in -a -f Makefile -a ! -f $name.$spec ] ; then
+  make $name.spec
+fi
+
+for i in permissions.easy permissions.secure permissions.paranoid rpmlintrc
+do
+  if [ -f $name-$i.in -a -f Makefile -a ! -f $name-$i ] ; then
+    make $name-$i
+  fi
+  if [ -f $name-$i ] ; then
+    cp $name-$i $stage
+  fi
+done
+
+# debian
+if [ -f debian/Makefile.in ] ; then
+  make debian/Makefile
+fi
+
+if [ -f debian/Makefile ] ; then
+  make -C debian
+  cp debian/debian.tar.gz $stage
+  cp debian/*.dsc $stage
+  make -C debian clean >/dev/null
+fi
+
+# arch linux
+if [ -f PKGBUILD.in -a -f Makefile -a ! -f PKGBUILD ] ; then
+  make PKGBUILD
+fi
+
+if [ -f PKGBUILD ] ; then
+  sed -i 's/_build_on_obs=.*/_build_on_obs=1/g' PKGBUILD
+  total=$(grep "#### INSTALL.* ####" PKGBUILD | wc -l)
+  if [ $total -le 1 ] ; then
+    sed -n '/#### INSTALL SCRIPTS ####/,$p' PKGBUILD \
+        | grep -v "^####" > archpkg.install || true
+    if [ ! -s archpkg.install ] ; then
+      /bin/rm -f archpkg.install
+    fi
+  else
+    count=1
+    while true
+    do
+      sed -n "/#### INSTALL$count SCRIPTS ####/,/#### END ####/p" PKGBUILD \
+          | grep -v "^####" > archpkg"$count".install || true
+      if [ ! -s archpkg"$count".install ] ; then
+        /bin/rm -f archpkg"$count".install
+      fi
+      if [ $count -eq $total ] ; then
+          break
+      fi
+      count=$(expr $count + 1)
+    done
+  fi
+fi
+
+for i in $name.spec $name.changes PKGBUILD archpkg*.install
+do
+  if [ -f $i ] ; then
+    cp $i $stage
+  fi
+done
+if [ -f extra_src ] ; then
+  make `grep -h -v "^#" extra_src`
+  cp -rpf `grep -h -v "^#" extra_src` $stage
+fi
+if [ -f Makefile ] ; then
+  echo cleaning $name-$version
+  make clean >/dev/null 2>&1
+  find . -type d \( -name autom4te.cache -o -name .deps \) -exec /bin/rm -rf {} +
+fi
+
+# clean meta packages
+if [ $meta_pkg -eq 1 ] ; then
+  for dir in `cat $name.packages`
+  do
+    real_dir=$(basename $dir)
+    echo $dir | grep "/" >/dev/null
+    if [ $? -eq 0 ] ; then
+      pkg_name=$(echo $real_dir | sed -e 's{-x{{g')
+    else
+      pkg_name=$(echo $dir | sed -e 's{-x{{g')
+    fi
+    ver=$(cat $dir/conf-version)
+    /bin/rm -rf $stage/$pkg_name-$ver
+    if [ ! "$real_dir" = "$pkg_name" -a -L $stage/$real_dir ] ; then
+      /bin/rm -f $stage/$real_dir
+    fi
+  done
+  /bin/rm -rf $stage/$name-$version
+else
+  /bin/rm -rf debian .git RCS
+  cd ..
+  echo "creating archive $name-$version.tar.gz"
+  tar cfz $name-$version.tar.gz $name-$version
+  /bin/rm -rf $name-$version
+fi

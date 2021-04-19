@@ -19,3 +19,150 @@ ezmlm uses `Delivered-To` header to stop forwarding loops, Mailing-List to prote
 ezmlm is reliable, even in the face of system crashes. It writes each new subscription and each new message safely to disk before it reports success to qmail.
 
 ezmlm doesn't mind huge mailing lists. Lists don't even have to fit into memory. ezmlm hashes the subscription list into a set of independent files so that it can handle subscription requests quickly. ezmlm uses qmail for blazingly fast parallel SMTP deliveries.
+
+# Source Compiling/Linking
+
+## Download / clone / compile libqmail
+
+[![ezmlm Ubuntu, Mac OSX CI](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-c-cpp.yml/badge.svg)](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-c-cpp.yml)
+[![ezmlm FreeBSD CI](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-freebsd.yml/badge.svg)](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-freebsd.yml)
+
+ezmlm uses functions from libqmail library. libqmail uses GNU autotools. You need to haave autoconf, automake, libtool and pkg config package. Follow the instructions below to have them installed in case you don't have them.
+
+```
+$ cd /usr/local/src
+$ git clone https://github.com/mbhangui/libqmail.git
+$ cd /usr/local/src/libqmail
+$ ./default.configure
+$ make
+$ sudo make install-strip
+```
+
+(check version in libqmail/conf-version)
+
+**NOTES**
+
+For Darwin (Mac OSX), install [MacPorts](https://www.macports.org/) or brew. You can look at this [document](https://paolozaino.wordpress.com/2015/05/05/how-to-install-and-use-autotools-on-mac-os-x/) for installing MacPorts.
+
+```
+FreeBSD
+# pkg install automake autoconf libtool pkgconf mysql80-server mysql80-client
+
+Darwin
+# port install autoconf libtool automake pkgconfig openssl mysql
+# port update outdated
+
+Arch Linux
+# pacman -S --refresh --sysupgrade
+# pacman -S --needed archlinux-keyring
+# pacman -S base-devel diffutils coreutils openssl mysql
+
+Gentoo Linux
+# emaint -a sync
+# emerge-webrsync
+# emerge -a app-portage/eix
+# eix-sync
+# etc-update
+```
+
+## Download / clone / compile ezmlm
+
+```
+$ cd /usr/local/src
+$ git clone https://github.com/mbhangui/ezmlm.git
+$ cd /usr/local/src/ezmlm/ezmlm-x
+$ ./default.configure
+$ make
+$ sudo make install-strip
+```
+
+# Binary Builds on openSUSE Build Service
+
+**[Build Status on](https://build.opensuse.org/project/monitor/home:mbhangui) [Open Build Service](https://build.opensuse.org/project/show/home:mbhangui)**
+
+[![ezmlm obs trigger](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-obs.yml/badge.svg)](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-obs.yml)
+
+You can get binary RPM / Debian packages at
+
+* [Stable Releases](http://download.opensuse.org/repositories/home:/indimail/)
+* [Experimental Releases](http://download.opensuse.org/repositories/home:/mbhangui/)
+
+If you want to use DNF / YUM / apt-get, the corresponding install instructions for the two repositories, depending on whether you want to install a stable or an experimental release, are
+
+* [Stable](https://software.opensuse.org/download.html?project=home%3Aindimail&package=ezmlm)
+* [Experimental](https://software.opensuse.org/download.html?project=home%3Ambhangui&package=ezmlm)
+
+```
+Currently, the list of supported distributions for ezmlm is
+
+    * Arch Linux
+
+    * SUSE
+          o openSUSE_Leap_15.0
+          o openSUSE_Leap_15.1
+          o openSUSE_Leap_15.2
+          o openSUSE_Tumbleweed
+          o SUSE Linux Enterprise 12
+          o SUSE Linux Enterprise 12 SP1
+          o SUSE Linux Enterprise 12 SP2
+          o SUSE Linux Enterprise 12 SP3
+          o SUSE Linux Enterprise 12 SP4
+          o SUSE Linux Enterprise 12 SP5
+          o SUSE Linux Enterprise 15
+          o SUSE Linux Enterprise 15 SP1
+          o SUSE Linux Enterprise 15 SP2
+          o SUSE Linux Enterprise 15 SP3
+
+    * Red Hat
+          o Fedora 32
+          o Fedora 33
+          o Red Hat Enterprise Linux 7
+          o Scientific Linux 7
+          o CentOS 7
+          o CentOS 8
+
+    * Debian
+          o Debian  9.0
+          o Debian 10.0
+          o Univention_4.3
+          o Univention_4.4
+
+    * Ubuntu
+          o Ubuntu 16.04
+          o Ubuntu 17.04
+          o Ubuntu 18.04
+          o Ubuntu 19.04
+          o Ubuntu 19.10
+          o Ubuntu 20.04
+          o Ubuntu 20.10
+```
+
+NOTE: You can also build local binary packages. To generate RPM packages locally for all components refer to [Create Local Binary Packages](.github/CREATE-Packages.md)
+
+# SUPPORT INFORMATION
+
+For this forked version of ezmlm, you can contact on IRC or mailing list
+
+## IRC / Matrix
+
+![Matrix](https://img.shields.io/matrix/indimail:matrix.org)
+
+* Join me [#indimail:matrix.org](https://matrix.to/#/#indimail:matrix.org)
+* IndiMail has an IRC channel #indimail-mta
+
+## Mailing list
+
+There are four Mailing Lists for IndiMail
+
+1. indimail-support  - You can subscribe for Support [here](https://lists.sourceforge.net/lists/listinfo/indimail-support). You can mail [indimail-support](mailto:indimail-support@lists.sourceforge.net) for support Old discussions can be seen [here](https://sourceforge.net/mailarchive/forum.php?forum_name=indimail-support)
+2. indimail-devel - You can subscribe [here](https://lists.sourceforge.net/lists/listinfo/indimail-devel). You can mail [indimail-devel](mailto:indimail-devel@lists.sourceforge.net) for development activities. Old discussions can be seen [here](https://sourceforge.net/mailarchive/forum.php?forum_name=indimail-devel)
+3. indimail-announce - This is only meant for announcement of New Releases or patches. You can subscribe [here](http://groups.google.com/group/indimail)
+4. Archive at [Google Groups](http://groups.google.com/group/indimail). This groups acts as a remote archive for indimail-support and indimail-devel.
+
+There is also a [Project Tracker](http://sourceforge.net/tracker/?group_id=230686) for IndiMail (Bugs, Feature Requests, Patches, Support Requests)
+
+## CREDITS
+
+The IDX patches add: Indexing, (Remote) Moderation, digest, make patches, multi-language, MIME, global interface, SQL database support.
+
+Fred Lindberg <lindberg@id.wustl.edu>, Fred B. Ringel <fredr@rivertown.net>, Bruce Guenter <bruce@untroubled.org>, and many others
