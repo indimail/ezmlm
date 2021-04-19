@@ -286,6 +286,7 @@ conf-version conf-release doc/ChangeLog ezmlm.changes
 	cat $@.in | $(edit) > $@
 
 distclean: clean
+	/bin/rm -f Makefile. Makevars. 
 
 clean: TARGETS
 	/bin/rm -f `cat TARGETS`
