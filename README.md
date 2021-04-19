@@ -27,7 +27,7 @@ ezmlm doesn't mind huge mailing lists. Lists don't even have to fit into memory.
 [![ezmlm Ubuntu, Mac OSX CI](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-c-cpp.yml/badge.svg)](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-c-cpp.yml)
 [![ezmlm FreeBSD CI](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-freebsd.yml/badge.svg)](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-freebsd.yml)
 
-ezmlm uses functions from libqmail library. libqmail uses GNU autotools. You need to haave autoconf, automake, libtool and pkg config package. Follow the instructions below to have them installed in case you don't have them.
+ezmlm uses functions from libqmail library. libqmail uses GNU autotools. You need to have autoconf, automake, libtool and pkg config package. Follow the instructions below to have them installed in case you don't have them.
 
 ```
 $ cd /usr/local/src
@@ -66,6 +66,8 @@ Gentoo Linux
 ```
 
 ## Download / clone / compile ezmlm
+
+The build below depends on several Makefiles. For the build to operate without errors, you need to run default.configure the first time and everytime after you do a `make distclean`. If you don't run default.configure, you can replace `make` with `./qmake`
 
 ```
 $ cd /usr/local/src
