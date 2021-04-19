@@ -130,7 +130,6 @@ Currently, the list of supported distributions for ezmlm is
           o Univention_4.4
 
     * Ubuntu
-          o Ubuntu 16.04
           o Ubuntu 17.04
           o Ubuntu 18.04
           o Ubuntu 19.04
