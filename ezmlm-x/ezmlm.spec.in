@@ -28,6 +28,8 @@ License: GPLv2
 Source0: http://ezmlm.org/archive/%{version}/%{name}-%{version}.tar.gz
 URL: http://www.ezmlm.org
 
+BuildRequires: libqmail-devel
+BuildRequires: sed findutils diffutils gzip coreutils grep
 ##################################### OBS ####################################
 %if 0%{?suse_version}
 BuildRequires: -post-build-checks  
