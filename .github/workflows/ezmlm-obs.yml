@@ -1,23 +1,23 @@
-name: ezmlmn obs trigger
+name: ezmlm obs trigger
 
 on:
   push:
     paths:
-      - '**/ezmlmn-x/**'
+      - '**/ezmlm-x/**'
       - '**/prepare_obs'
       - '**/catChangeLog'
-      - .github/workflows/ezmlmn-obs.yml
+      - .github/workflows/ezmlm-obs.yml
       - '!**/doc/*'
       - '!**.md'
-      - '!**/ezmlmn-freebsd.yml'
-      - '!**/ezmlmn-c-cpp.yml'
+      - '!**/ezmlm-freebsd.yml'
+      - '!**/ezmlm-c-cpp.yml'
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout_ezmlmn
+    - name: checkout_ezmlm
       uses: actions/checkout@v2
     - name: checkout_qmail
       uses: actions/checkout@v2
@@ -30,10 +30,10 @@ jobs:
         sudo apt-get update; sudo apt-get install libssl-dev libmysqlclient-dev
         cd libqmail; ./default.configure; make; sudo make install-strip
     - name: prepare obs
-      run: cd ezmlmn-x; ./prepare_obs ezmlmn
+      run: cd ezmlm-x; ./prepare_obs ezmlm
     - uses: actions/upload-artifact@v2
       with:
-        name: ezmlmn
+        name: ezmlm
         path: ~/stage
     - shell: bash
       name: trigger_obs
@@ -50,13 +50,13 @@ jobs:
         gpg --list-secret-keys --keyid-format LONG
         # create archive and transfer
         cd ~/stage
-        tar cvfz $GITHUB_WORKSPACE/ezmlmn-obs.tar.gz *
+        tar cvfz $GITHUB_WORKSPACE/ezmlm-obs.tar.gz *
         # create detached signature for obs archive
         echo "${{secrets.software_passphrase}}" | gpg2 --pinentry-mode loopback \
           --passphrase-fd 0 --default-key "${{secrets.software_user}}" \
-          -o ezmlmn-obs.sig --detach-sig $GITHUB_WORKSPACE/ezmlmn-obs.tar.gz
+          -o ezmlm-obs.sig --detach-sig $GITHUB_WORKSPACE/ezmlm-obs.tar.gz
         # copy to /home/frs/project/indimail
-        scp -q -i ~/.private_key $GITHUB_WORKSPACE/ezmlmn-obs.tar.gz \
-          ~/stage/ezmlmn-obs.sig "${{secrets.sf_user}}:${{secrets.sf_upload_path}}"
-        rm -f ~/.private_key ~/.ssh/known_hosts $GITHUB_WORKSPACE/ezmlmn-obs.tar.gz
+        scp -q -i ~/.private_key $GITHUB_WORKSPACE/ezmlm-obs.tar.gz \
+          ~/stage/ezmlm-obs.sig "${{secrets.sf_user}}:${{secrets.sf_upload_path}}"
+        rm -f ~/.private_key ~/.ssh/known_hosts $GITHUB_WORKSPACE/ezmlm-obs.tar.gz
         rm -rf ~/stage

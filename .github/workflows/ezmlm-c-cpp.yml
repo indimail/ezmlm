@@ -23,7 +23,9 @@ jobs:
     
     steps:
     - name: extra_packages
-      run: if [ "${OS}" = "macos-latest" ]; then brew install automake autoconf libtool pkgconfig openssl mysql; fi
+      run: |
+        if [ "${OS}" = "macos-latest" ]; then brew install automake autoconf libtool pkgconfig openssl mysql; fi
+        if [ "${OS}" = "ubuntu-latest" ] ; then sudo apt-get install gcc g++ automake autoconf libtool libssl-dev libmysqlcliet-dev; fi
       env:
         OS: ${{ matrix.host }}
 
@@ -43,6 +45,6 @@ jobs:
     - name: build_ezmlm
       run: |
         cd ezmlm/ezmlm-x
-        ./default.configure; ./qmake
+        ./default.configure; make
       env:
         OS: ${{ matrix.host }}

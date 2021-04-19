@@ -33,9 +33,9 @@ jobs:
       with:
         envs: 'MYTOKEN MYTOKEN2'
         usesh: true
-        prepare: pkg install -y curl automake autoconf libtool pkgconf mysql80-server mysql80-client
+        prepare: pkg install -y curl automake autoconf libtool pkgconf
         run: |
           cd libqmail; ./default.configure; make; make install-strip
           cd ../main/ezmlm-x
           ./default.configure
-          ./qmake
+          make
