@@ -2,3 +2,5 @@ Makefile
 *.gz
 changelog
 *.dsc
+control
+copyright

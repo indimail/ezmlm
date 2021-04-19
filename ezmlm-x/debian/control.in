@@ -1,7 +1,7 @@
 Source: ezmlm
 Section: mail
 Priority: optional
-Maintainer: Manvendra Bhangui <manvendra@indimail.org>
+Maintainer: @email@
 Standards-Version: 4.1.2
 Homepage: http://indimail.sourceforge.net
 Build-Depends: debhelper (>= 10)
