@@ -30,3 +30,4 @@ uint32.h
 Makevars.
 PKGBUILD
 ezmlm.changes
+install

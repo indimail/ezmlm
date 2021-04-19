@@ -220,13 +220,13 @@ compile quote.c quote.h
 	./compile quote.c
 
 setup: \
-it install conf-bin conf-man
+default install conf-bin
 	mkdir -p $(DESTDIR)"`head -n 1 conf-bin`"
 	./install $(DESTDIR)"`head -1 conf-bin`" < BIN
 	mkdir -p $(DESTDIR)"`head -n 1 conf-sbin`"
 	./install $(DESTDIR)"`head -1 conf-sbin`" < SBIN
-	mkdir -p $(DESTDIR)"`head -n 1 conf-man`"
-	./install $(DESTDIR)"`head -1 conf-man`" < MAN
+	mkdir -p $(DESTDIR)$(mandir)
+	./install $(DESTDIR)$(mandir) < MAN
 
 slurp.o: \
 compile slurp.c slurp.h slurpclose.h
@@ -277,7 +277,7 @@ ezmlm-queue.1: ezmlm-queue.9 conf-sysconfdir
 	> ezmlm-queue.1
 
 ezmlm.spec: ezmlm.spec.in catChangeLog doc/ChangeLog conf-prefix \
-conf-sysconfdir conf-qmail conf-bin conf-man conf-email
+conf-sysconfdir conf-qmail conf-bin conf-email
 	(cat $@.in;./catChangeLog) | $(edit) > $@
 ezmlm.changes: doc/ChangeLog conf-version conf-release conf-email
 	./catChangeLog --changes doc/ChangeLog > $@

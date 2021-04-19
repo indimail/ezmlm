@@ -28,14 +28,14 @@ build() {
   echo ${_qmaildir}                  >conf-qmail
   echo ${_sysconfdir}                >conf-sysconfdir
   echo ${_prefix}/bin                >conf-bin
-  echo ${_mandir}                    >conf-man
+  echo ${_prefix}/sbin               >conf-sbin
   ./qmake -s
 }
 
 package() {
   depends=('indimail-mta>=2.0')
   cd $srcdir/$pkgname-${pkgver}
-  ./qmake DESTDIR=${pkgdir} install
+  ./qmake DESTDIR=${pkgdir} setup
   install -D -m 0644 ${pkgname}.changes "$pkgdir"${_ezdocdir}/${pkgname}.changes
   cd $srcdir
   (

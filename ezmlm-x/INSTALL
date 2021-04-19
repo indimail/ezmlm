@@ -7,8 +7,8 @@ Things you have to decide before starting:
 * Where programs will be installed, normally /usr/local/bin/ezmlm. To
 change this directory, edit conf-bin now.
 
-* Where man pages will be installed, normally /usr/local/man. To change
-this directory, edit conf-man now.
+* Where privilegedp programs will be installed, normally /usr/local/sbin. To
+change this directory, edit conf-sbin now.
 
 * Where the qmail home directory is, normally /var/qmail. To change this
 directory, edit conf-qmail now.

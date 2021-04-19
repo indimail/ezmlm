@@ -7,7 +7,6 @@ CHANGES
 FILES
 BIN
 MAN
-VERSION
 SYSDEPS
 Makefile
 ezmlm=0
@@ -67,7 +66,6 @@ auto-str.c
 conf-bin
 auto_bin.c.do
 auto_bin.h
-conf-man
 install=x
 install.c
 setup.do
