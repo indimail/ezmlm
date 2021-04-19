@@ -6,13 +6,13 @@ fi
 make -s -C debian
 ezmlm_version=$(cat conf-version)
 echo "Cleaning Stage"
-/bin/rm -rf $HOME/stage/ezmlm-idx-$ezmlm_version
+/bin/rm -rf $HOME/stage/ezmlm-$ezmlm_version
 echo "Copying Stage"
-mkdir -p    $HOME/stage/ezmlm-idx-$ezmlm_version
-cp -rp .    $HOME/stage/ezmlm-idx-$ezmlm_version
-cd          $HOME/stage/ezmlm-idx-$ezmlm_version
+mkdir -p    $HOME/stage/ezmlm-$ezmlm_version
+cp -rp .    $HOME/stage/ezmlm-$ezmlm_version
+cd          $HOME/stage/ezmlm-$ezmlm_version
 dpkg-buildpackage -tc -b
 if [ $? -eq 0 ] ; then
-	/bin/rm -rf $HOME/stage/libqmail-$ezmlm_version
+	/bin/rm -rf $HOME/stage/ezmlm-$ezmlm_version
 	ls -lt $HOME/stage
 fi

@@ -38,4 +38,4 @@ jobs:
           cd libqmail; ./default.configure; make; make install-strip
           cd ../main/ezmlm-x
           ./default.configure
-          make
+          ./qmake

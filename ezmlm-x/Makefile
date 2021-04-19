@@ -1,14 +1,18 @@
 # Don't edit Makefile! Use conf-* for configuration.
 COFLAGS=-z+05:30
 SHELL=/bin/sh
-version=$(shell cat conf-version)
-release=$(shell cat conf-release)
+include Makevars.$(SYSTEM)
 
 edit = sed \
+	-e 's}@prefix\@}$(prefix)}g' \
+	-e 's}@qmaildir\@}$(qmaildir)}g' \
+	-e 's}@sysconfdir\@}$(sysconfdir)}g' \
+	-e 's}@mandir\@}$(mandir)}g' \
+	-e 's,@email\@,$(email),g' \
 	-e 's}@version\@}$(version)}g' \
 	-e 's|@release\@|$(release)|g'
 
-default: it ezmlm.spec ezmlm-queue.1
+default: it ezmlm.spec ezmlm.changes PKGBUILD ezmlm-queue.1
 all: it
 
 auto-ccld.sh: \
@@ -64,10 +68,7 @@ load ezmlm-list.o
 	./load ezmlm-list -lqmail
 
 ezmlm-list.o: \
-compile ezmlm-list.c ezmlm-list.c \
-ezmlm-list.c ezmlm-list.c ezmlm-list.c \
-ezmlm-list.c ezmlm-list.c ezmlm-list.c \
-ezmlm-list.c
+compile ezmlm-list.c
 	./compile ezmlm-list.c
 
 ezmlm-make: \
@@ -75,12 +76,7 @@ load ezmlm-make.o auto_bin.o
 	./load ezmlm-make auto_bin.o -lqmail
 
 ezmlm-make.o: \
-compile ezmlm-make.c ezmlm-make.c ezmlm-make.c \
-ezmlm-make.c ezmlm-make.c \
-ezmlm-make.c ezmlm-make.c ezmlm-make.c \
-ezmlm-make.c ezmlm-make.c ezmlm-make.c \
-auto_bin.h ezmlm-make.c ezmlm-make.c ezmlm-make.c ezmlm-make.c \
-ezmlm-make.c
+compile ezmlm-make.c auto_bin.h
 	./compile ezmlm-make.c
 
 ezmlm-manage: \
@@ -280,8 +276,14 @@ ezmlm-queue.1: ezmlm-queue.9 conf-sysconfdir
 	| sed s}SYSCONFDIR}"`head -1 conf-sysconfdir`"}g \
 	> ezmlm-queue.1
 
-ezmlm.spec: ezmlm.spec.in catChangeLog doc/ChangeLog
+ezmlm.spec: ezmlm.spec.in catChangeLog doc/ChangeLog conf-prefix \
+conf-sysconfdir conf-qmail conf-bin conf-man conf-email
 	(cat $@.in;./catChangeLog) | $(edit) > $@
+ezmlm.changes: doc/ChangeLog conf-version conf-release conf-email
+	./catChangeLog --changes doc/ChangeLog > $@
+PKGBUILD: PKGBUILD.in catChangeLog Makefile conf-email \
+conf-version conf-release doc/ChangeLog ezmlm.changes
+	cat $@.in | $(edit) > $@
 
 distclean: clean
 

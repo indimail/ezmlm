@@ -27,3 +27,6 @@ make-makelib
 makelib
 systype
 uint32.h
+Makevars.
+PKGBUILD
+ezmlm.changes

@@ -72,7 +72,7 @@ $ cd /usr/local/src
 $ git clone https://github.com/mbhangui/ezmlm.git
 $ cd /usr/local/src/ezmlm/ezmlm-x
 $ ./default.configure
-$ make
+$ make or ./qmake
 $ sudo make install-strip
 ```
 

@@ -10,6 +10,10 @@
 %define build_on_obs       0
 %global _hardened_build    1
 %endif
+%global _prefix            @prefix@
+%global sysconfdir         @sysconfdir@
+%global mandir             @mandir@
+%global ezdocdir           @prefix@/share/doc/ezmlm
 
 Name: ezmlm
 Version: @version@
@@ -90,9 +94,24 @@ indimail-mta for blazingly fast parallel SMTP deliveries.
 
 %build
 make %{?_smp_mflags}
+(
+echo "NAME=%{name}"
+echo "Description=\"Easy MailingList Manager for indimail-mta\""
+echo "ezmlm_version="%{version}-%{release}""
+echo "ID=%{name}"
+echo "HOME_URL=\"https://github.com/mbhangui/ezmlm\""
+echo "PACKAGE_BUGREPORT=\"'@email@'\""
+) > %{name}-release
 
 %install
+%{__mkdir_p} %{buildroot}%{_prefix}
+%{__mkdir_p} %{buildroot}%{sysconfdir}/ezmlm
+%{__mkdir_p} %{buildroot}%{ezdocdir}
 %{__make} -s DESTDIR=%{buildroot} setup
+%{__mv} %{name}-release %{buildroot}%{sysconfdir}/ezmlm
+%{__mv} %{name}.changes %{buildroot}%{ezdocdir}
+# Compress the man pages
+find %{buildroot}%{mandir} -type f -exec gzip -q {} \;
 
 %files
 %defattr(-, root, root,-)
@@ -107,18 +126,22 @@ make %{?_smp_mflags}
 %{_prefix}/bin/ezmlm-warn
 %{_prefix}/bin/ezmlm-weed
 %{_prefix}/sbin/ezmlm-queue
-%{_prefix}/share/man/man1/ezmlm-list.1.gz
-%{_prefix}/share/man/man1/ezmlm-make.1.gz
-%{_prefix}/share/man/man1/ezmlm-manage.1.gz
-%{_prefix}/share/man/man1/ezmlm-queue.1.gz
-%{_prefix}/share/man/man1/ezmlm-reject.1.gz
-%{_prefix}/share/man/man1/ezmlm-return.1.gz
-%{_prefix}/share/man/man1/ezmlm-send.1.gz
-%{_prefix}/share/man/man1/ezmlm-sub.1.gz
-%{_prefix}/share/man/man1/ezmlm-unsub.1.gz
-%{_prefix}/share/man/man1/ezmlm-warn.1.gz
-%{_prefix}/share/man/man1/ezmlm-weed.1.gz
-%{_prefix}/share/man/man5/ezmlm.5.gz
+%{mandir}/man1/ezmlm-list.1.gz
+%{mandir}/man1/ezmlm-make.1.gz
+%{mandir}/man1/ezmlm-manage.1.gz
+%{mandir}/man1/ezmlm-queue.1.gz
+%{mandir}/man1/ezmlm-reject.1.gz
+%{mandir}/man1/ezmlm-return.1.gz
+%{mandir}/man1/ezmlm-send.1.gz
+%{mandir}/man1/ezmlm-sub.1.gz
+%{mandir}/man1/ezmlm-unsub.1.gz
+%{mandir}/man1/ezmlm-warn.1.gz
+%{mandir}/man1/ezmlm-weed.1.gz
+%{mandir}/man5/ezmlm.5.gz
+%config(noreplace) %{sysconfdir}/ezmlm/*
+
+%docdir %{ezdocdir}
+%{ezdocdir}/*
 
 %doc
 
