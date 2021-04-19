@@ -24,6 +24,7 @@ prefix=/usr
 mandir=${prefix}/share/man
 sysconfdir=$(shell head -1 conf-sysconfdir)
 version=$(shell cat conf-version)
+email=$(shell cat conf-email)
 DESTDIR=$(CURDIR)/debian/ezmlm.tmp
 
 build: build-stamp
@@ -43,7 +44,7 @@ build-stamp:
 	echo ezmlm_version=$(version); \
 	echo ID=ezmlm; \
 	echo HOME_URL="https://github.com/mbhangui/ezmlm"; \
-	echo PACKAGE_BUGREPORT=\"'@email@'\"; \
+	echo PACKAGE_BUGREPORT=\"'$(email)'\"; \
 	) > ezmlm-release
 	touch build-stamp
 
