@@ -57,12 +57,6 @@ compile cookie.c cookie.h cookie.c cookie.c uint32.h cookie.c \
 surfpcs.h uint32.h surfpcs.h cookie.c
 	./compile cookie.c
 
-direntry.h: \
-compile trydrent.c direntry.h1 direntry.h2
-	( ./compile trydrent.c >/dev/null 2>&1 \
-	&& cat direntry.h2 || cat direntry.h1 ) > direntry.h
-	rm -f trydrent.o
-
 ezmlm-list: \
 load ezmlm-list.o 
 	./load ezmlm-list -lqmail
@@ -144,7 +138,7 @@ slurpclose.o slurp.o quote.o qmail.o surf.a
 	slurpclose.o slurp.o quote.o qmail.o surf.a -lqmail
 
 ezmlm-warn.o: \
-compile ezmlm-warn.c direntry.h slurp.h getconf.h cookie.h qmail.h \
+compile ezmlm-warn.c slurp.h getconf.h cookie.h qmail.h \
 issub.h quote.h 
 	./compile ezmlm-warn.c
 
