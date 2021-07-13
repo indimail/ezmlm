@@ -5,6 +5,7 @@ Version: @version@-@release@
 Maintainer: @email@
 Architecture: any
 Build-Depends: debhelper (>= 4.1.16), libqmail-dev
+Debtransform-Release: 1
 Debtransform-Files-Tar: debian.tar.gz
 Debtransform-Tar: ezmlm-@version@.tar.gz
 Standards-Version: 3.9.1

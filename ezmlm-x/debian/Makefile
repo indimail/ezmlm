@@ -22,7 +22,7 @@ ezmlm.dsc: ezmlm.dsc.in Makefile
 	$(edit) $@.in > $@
 changelog: ../doc/ChangeLog ../conf-version ../conf-release \
 ../conf-email
-	../catChangeLog --debian --name=ezmlm --state=unstable \
+	../catChangeLog --debian --name=ezmlm --state=stable \
 	--urgency=low ../doc/ChangeLog > $@
 copyright: copyright.in ../conf-email
 	$(edit) $@.in > $@
