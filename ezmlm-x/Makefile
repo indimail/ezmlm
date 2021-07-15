@@ -270,7 +270,7 @@ warn-auto.sh
 ezmlm-queue.1: ezmlm-queue.9 conf-sysconfdir conf-qmail
 	cat ezmlm-queue.9 \
 	| sed s}SYSCONFDIR}"`head -1 conf-sysconfdir`"}g \
-	| sed s}QMAIL}"`head -1 conf-qmail`"}g \
+	| sed s}QMAILHOME}"`head -1 conf-qmail`"}g \
 	> ezmlm-queue.1
 
 ezmlm.spec: ezmlm.spec.in catChangeLog doc/ChangeLog conf-prefix \
