@@ -1,6 +1,8 @@
 %undefine _missing_build_ids_terminate_build
 %define _unpackaged_files_terminate_build 1
+%if %{defined nodebug}
 %global debug_package %{nil}
+%endif
 
 %if %{defined _project}
 # define if building on openSUSE build service
@@ -95,6 +97,7 @@ indimail-mta for blazingly fast parallel SMTP deliveries.
 %setup -q
 
 %build
+./default.configure
 make %{?_smp_mflags}
 (
 echo "NAME=%{name}"
@@ -114,6 +117,10 @@ echo "PACKAGE_BUGREPORT=\"'@email@'\""
 %{__mv} %{name}.changes %{buildroot}%{ezdocdir}
 # Compress the man pages
 find %{buildroot}%{mandir} -type f -exec gzip -q {} \;
+%if %{undefined nodebug}
+ /bin/chmod -R 755 %{buildroot}%{_prefix}/bin
+ /bin/chmod -R 755 %{buildroot}%{_prefix}/sbin
+%endif
 
 %files
 %defattr(-, root, root,-)
