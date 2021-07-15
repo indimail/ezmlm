@@ -1,39 +1,48 @@
 #include <unistd.h>
-#include <sys/types.h>
 #include "substdio.h"
 #include "wait.h"
+#include "env.h"
+#include "scan.h"
 #include "fd.h"
 #include "qmail.h"
 #include "auto_qmail.h"
 
-static char *binqqargs[2] = { "sbin/ezmlm-queue", 0 } ;
-
 int qmail_open(qq)
 struct qmail *qq;
 {
-  int pim[2];
-  int pie[2];
+  int pim[2], pie[2];
+  int pic[2], errfd; /*- custom message */
+  char *x, *binqqargs[2] = { 0, 0 };
 
   if (pipe(pim) == -1) return -1;
   if (pipe(pie) == -1) { close(pim[0]); close(pim[1]); return -1; }
+  if (pipe(pic) == -1) { close(pim[0]); close(pim[1]); close(pie[0]); close(pie[1]); return -1; }
  
   switch(qq->pid = vfork()) {
     case -1:
       close(pim[0]); close(pim[1]);
       close(pie[0]); close(pie[1]);
+      close(pic[0]); close(pic[1]);
       return -1;
     case 0:
       close(pim[1]);
       close(pie[1]);
+      close(pic[0]); /*- we want to receive data */
       if (fd_move(0,pim[0]) == -1) _exit(120);
       if (fd_move(1,pie[0]) == -1) _exit(120);
+      if (!(x = env_get("ERROR_FD"))) errfd = CUSTOM_ERR_FD;
+      else scan_int(x, &errfd);
+      if (fd_move(errfd, pic[1]) == -1) _exit(120);
       if (chdir(auto_qmail) == -1) _exit(120);
+      if (!binqqargs[0]) binqqargs[0] = env_get("QMAILQUEUE");
+      if (!binqqargs[0]) binqqargs[0] = "sbin/ezmlm-queue";
       execv(*binqqargs,binqqargs);
       _exit(120);
   }
 
   qq->fdm = pim[1]; close(pim[0]);
   qq->fde = pie[1]; close(pie[0]);
+  qq->fdc = pic[0]; close(pic[1]);
   substdio_fdbuf(&qq->ss,write,qq->fdm,qq->buf,sizeof(qq->buf));
   qq->flagerr = 0;
   return 0;
