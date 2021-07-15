@@ -4,15 +4,24 @@
 #include "env.h"
 #include "scan.h"
 #include "fd.h"
+#include "stralloc.h"
+#include "envdir.h"
+#include "pathexec.h"
+#include "error.h"
 #include "qmail.h"
 #include "auto_qmail.h"
+#include "auto_sysconfdir.h"
 
-int qmail_open(qq)
-struct qmail *qq;
+static stralloc tmp = { 0 };
+
+int qmail_open(struct qmail *qq)
 {
   int pim[2], pie[2];
-  int pic[2], errfd; /*- custom message */
-  char *x, *binqqargs[2] = { 0, 0 };
+  int pic[2], i, unreadable = 0, errfd; /*- custom message */
+  char *x, *err, *binqqargs[2] = { 0, 0 };
+  char **e, **orig_env;
+  char errbuf[256];
+  substdio sserr;
 
   if (pipe(pim) == -1) return -1;
   if (pipe(pie) == -1) { close(pim[0]); close(pim[1]); return -1; }
@@ -34,6 +43,28 @@ struct qmail *qq;
       else scan_int(x, &errfd);
       if (fd_move(errfd, pic[1]) == -1) _exit(120);
       if (chdir(auto_qmail) == -1) _exit(120);
+      if (!stralloc_copys(&tmp, auto_sysconfdir) ||
+          !stralloc_catb(&tmp, "/global_vars", 12) ||
+          !stralloc_0(&tmp))
+        _exit(51);
+      if (!access(tmp.s, X_OK)) {
+		orig_env = environ;
+        env_clear();
+        if ((i = envdir(tmp.s, &err, 1, &unreadable))) {
+          substdio_fdbuf(&sserr,write,errfd,errbuf,sizeof(errbuf));
+          substdio_put(&sserr, "Zenvdir: ", 9);
+          substdio_puts(&sserr, envdir_str(i));
+		  substdio_put(&sserr, ": ", 2);
+		  substdio_puts(&sserr, err);
+          substdio_put(&sserr, " (#4.3.0)", 9);
+          substdio_flush(&sserr);
+          _exit(88);
+        }
+        if ((e = pathexec(0))) environ = e;
+        else environ = orig_env;
+      } else
+      if (errno != error_noent)
+          _exit(55);
       if (!binqqargs[0]) binqqargs[0] = env_get("QMAILQUEUE");
       if (!binqqargs[0]) binqqargs[0] = "sbin/ezmlm-queue";
       execv(*binqqargs,binqqargs);

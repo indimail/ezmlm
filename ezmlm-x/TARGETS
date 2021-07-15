@@ -28,3 +28,4 @@ makelib
 systype
 uint32.h
 install
+auto_sysconfdir.o

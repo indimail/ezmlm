@@ -7,3 +7,9 @@ Release 1.1 Start 06/10/2018
 - 08/07/2021
 5. ezmlm-queue: use qmail-qmqpc if qmail-queue is missing (indimail-mini
    installation)
+- 15/07/2021
+6. ezmlm-queue: use qmail-qmqpc, qmail-multi, qmail-queue in order to
+    deliver/queue mails.
+7. qmail.c: added custom error code
+8. qmail.c: use envdir function to load environent variables from
+   /etc/indimail/ezmlm/global_vars

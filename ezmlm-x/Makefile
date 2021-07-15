@@ -30,6 +30,12 @@ auto-str.o: \
 compile auto-str.c auto-str.c auto-str.c auto-str.c
 	./compile auto-str.c
 
+auto_sysconfdir.c: auto-str conf-sysconfdir
+	./auto-str auto_sysconfdir `head -1 conf-sysconfdir` > auto_sysconfdir.c
+
+auto_sysconfdir.o: compile auto_sysconfdir.c
+	./compile auto_sysconfdir.c
+
 auto_bin.c: \
 auto-str conf-bin
 	./auto-str auto_bin `head -1 conf-bin` > auto_bin.c
@@ -75,10 +81,9 @@ compile ezmlm-make.c auto_bin.h
 
 ezmlm-manage: \
 load ezmlm-manage.o auto_qmail.o getconf.o subscribe.o log.o cookie.o \
-slurpclose.o slurp.o qmail.o quote.o \
-surf.a
+slurpclose.o slurp.o qmail.o quote.o surf.a auto_sysconfdir.o
 	./load ezmlm-manage auto_qmail.o getconf.o subscribe.o \
-	log.o cookie.o slurpclose.o \
+	log.o cookie.o slurpclose.o auto_sysconfdir.o \
 	slurp.o qmail.o quote.o surf.a -lqmail
 
 ezmlm-manage.o: \
@@ -107,9 +112,9 @@ cookie.h subscribe.h log.h issub.h
 
 ezmlm-send: \
 load ezmlm-send.o auto_qmail.o getconf.o qmail.o slurp.o \
-slurpclose.o 
+slurpclose.o auto_sysconfdir.o
 	./load ezmlm-send auto_qmail.o getconf.o qmail.o \
-	slurp.o slurpclose.o -lqmail
+	slurp.o slurpclose.o auto_sysconfdir.o -lqmail
 
 ezmlm-send.o: \
 compile ezmlm-send.c qmail.h getconf.h
@@ -133,9 +138,9 @@ compile ezmlm-unsub.c subscribe.h subscribe.h log.h
 
 ezmlm-warn: \
 load ezmlm-warn.o auto_qmail.o getconf.o cookie.o issub.o \
-slurpclose.o slurp.o quote.o qmail.o surf.a
+slurpclose.o slurp.o quote.o qmail.o auto_sysconfdir.o surf.a
 	./load ezmlm-warn auto_qmail.o getconf.o cookie.o issub.o \
-	slurpclose.o slurp.o quote.o qmail.o surf.a -lqmail
+	slurpclose.o slurp.o quote.o qmail.o surf.a auto_sysconfdir.o -lqmail
 
 ezmlm-warn.o: \
 compile ezmlm-warn.c slurp.h getconf.h cookie.h qmail.h \
