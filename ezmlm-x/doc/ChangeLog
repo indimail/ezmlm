@@ -1,4 +1,4 @@
-* Sat Oct 06 2018 12:45:06 +0530 mbhangui@gmail.com @version@-@release@%{?dist}
+*
 Release 1.1 Start 06/10/2018
 ======= Release Highlights ================================================
 o new queue program ezmlm-queue to queue mails to indimail-mta
