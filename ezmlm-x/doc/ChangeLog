@@ -1,5 +1,8 @@
 *
-Release 1.1 Start 06/10/2018
+Release 1.1 Start 18/17/2021
+
+*
+Release 1.0 Start 06/10/2018
 ======= Release Highlights ================================================
 o new queue program ezmlm-queue to queue mails to indimail-mta
 o Removed local libraries and use libqmail. Bulk of the code now comes from
