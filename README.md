@@ -69,6 +69,10 @@ Gentoo Linux
 # emerge -a app-portage/eix
 # eix-sync
 # etc-update
+
+Alpine Linux
+# apk add gcc g++ make git autoconf automake libtool m4 sed
+# apk add openssl-dev
 ```
 
 ## Download / clone / compile ezmlm
