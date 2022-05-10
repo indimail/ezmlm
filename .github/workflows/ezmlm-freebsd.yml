@@ -15,6 +15,7 @@ on:
       - '!**.md'
       - '!**/ezmlm-c-cpp.yml'
       - '!**/ezmlm-obs.yml'
+  workflow_dispatch:
 
 jobs:
   testfreebsd:
