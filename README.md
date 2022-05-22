@@ -110,7 +110,6 @@ Currently, the list of supported distributions for ezmlm is
     * Arch Linux
 
     * SUSE
-          o openSUSE_Leap_15.2
           o openSUSE_Leap_15.3
           o openSUSE_Leap_15.4
           o openSUSE_Tumbleweed
@@ -124,6 +123,7 @@ Currently, the list of supported distributions for ezmlm is
           o SUSE Linux Enterprise 15 SP1
           o SUSE Linux Enterprise 15 SP2
           o SUSE Linux Enterprise 15 SP3
+          o SUSE Linux Enterprise 15 SP4
 
     * Red Hat
           o Fedora 35
