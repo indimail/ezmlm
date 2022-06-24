@@ -31,6 +31,7 @@ control: control.in ../conf-release ../conf-version ../conf-email
 dummy.tar.gz: README.source
 	tar cf - README.source |gzip > $@
 debian.tar.gz: copyright rules control changelog compat \
-ezmlm.install Makefile
-	tar cf - copyright rules control changelog compat \
-	ezmlm.install |gzip > $@
+ezmlm.install Makefile source/format
+	cd .. && tar cf - debian/copyright debian/rules debian/control \
+	debian/changelog debian/compat debian/ezmlm.install \
+	debian/source | gzip > debian/$@
