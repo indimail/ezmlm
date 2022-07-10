@@ -1,3 +1,10 @@
+[![Matrix](https://img.shields.io/matrix/indimail:matrix.org.svg)](https://matrix.to/#/#indimail:matrix.org)
+
+**Current Complation Status**
+
+[![ezmlm Ubuntu, Mac OSX CI](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-c-cpp.yml/badge.svg)](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-c-cpp.yml)
+[![ezmlm FreeBSD CI](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-freebsd.yml/badge.svg)](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-freebsd.yml)
+
 # ezmlm
 
 [ezmlm fork](https://cr.yp.to/ezmlm.html) with support for [indimail-mta's](https://github.com/mbhangui/indimail-mta) multi-queue architecture.
@@ -29,9 +36,6 @@ ezmlm doesn't mind huge mailing lists. Lists don't even have to fit into memory.
 # Source Compiling/Linking
 
 ## Download / clone / compile libqmail
-
-[![ezmlm Ubuntu, Mac OSX CI](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-c-cpp.yml/badge.svg)](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-c-cpp.yml)
-[![ezmlm FreeBSD CI](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-freebsd.yml/badge.svg)](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-freebsd.yml)
 
 ezmlm uses functions from libqmail library. libqmail uses GNU autotools. You need to have autoconf, automake, libtool and pkg config package. Follow the instructions below to have them installed in case you don't have them.
 
@@ -160,7 +164,7 @@ For this forked version of ezmlm, you can contact on IRC or mailing list
 
 ## IRC / Matrix
 
-![Matrix](https://img.shields.io/matrix/indimail:matrix.org)
+[![Matrix](https://img.shields.io/matrix/indimail:matrix.org.svg)](https://matrix.to/#/#indimail:matrix.org)
 
 * [Matrix Invite Link #indimail:matrix.org](https://matrix.to/#/#indimail:matrix.org)
 * IndiMail has an [IRC channel on libera](https://libera.chat/) #indimail-mta
