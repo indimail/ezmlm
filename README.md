@@ -109,7 +109,7 @@ If you want to use DNF / YUM / apt-get, the corresponding install instructions f
 * [Experimental](https://software.opensuse.org/download.html?project=home%3Ambhangui&package=ezmlm)
 
 ```
-Currently, the list of supported distributions for ezmlm is
+Currently, the list of supported binary distributions for ezmlm is
 
     * Arch Linux
 
@@ -136,10 +136,8 @@ Currently, the list of supported distributions for ezmlm is
           o Scientific Linux 7
           o CentOS 7
           o CentOS 8
-          o CentOS 8 Stream
 
     * Debian
-          o Debian  9.0
           o Debian 10.0
           o Debian 11.0
           o Univention_4.3
@@ -147,12 +145,8 @@ Currently, the list of supported distributions for ezmlm is
 
     * Ubuntu
           o Ubuntu 16.04
-          o Ubuntu 17.04
           o Ubuntu 18.04
-          o Ubuntu 19.04
           o Ubuntu 20.04
-          o Ubuntu 21.04
-          o Ubuntu 21.10
           o Ubuntu 22.04
 ```
 
