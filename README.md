@@ -98,6 +98,8 @@ $ sudo make install-strip
 
 [![ezmlm obs trigger](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-obs.yml/badge.svg)](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-obs.yml)
 
+[![ezmlm](https://build.opensuse.org/projects/home:mbhangui/packages/ezmlm/badge.svg?type=percent)](https://build.opensuse.org/package/show/home:mbhangui/ezmlm)
+
 You can get binary RPM / Debian packages at
 
 * [Stable Releases](http://download.opensuse.org/repositories/home:/indimail/)
