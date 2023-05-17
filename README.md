@@ -199,6 +199,4 @@ There is also a [Project Tracker](http://sourceforge.net/tracker/?group_id=23068
 
 ## CREDITS
 
-The IDX patches add: Indexing, (Remote) Moderation, digest, make patches, multi-language, MIME, global interface, SQL database support.
-
-Fred Lindberg <lindberg@id.wustl.edu>, Fred B. Ringel <fredr@rivertown.net>, Bruce Guenter <bruce@untroubled.org>, and many others
+ezmlm is mailing list management software (MLM) by Daniel J. Bernstein. This version of ezmlm has been modified from the original to use re-usable functions from [libqmail](https://github.com/mbhangui/libqmail) and work with [indimail-mta](https://github.com/mbhangui/indimail-mta).
