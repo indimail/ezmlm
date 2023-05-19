@@ -16,12 +16,15 @@
 %global sysconfdir         @sysconfdir@
 %global mandir             @mandir@
 %global ezdocdir           @prefix@/share/doc/ezmlm
+%if %build_on_obs == 1
+%global packager           Manvendra Bhangui <@email@>
+%endif
 
 Name: ezmlm
 Version: @version@
 Release: @release@%{?dist}
 Summary: Easy Mailing List Manager
-Group: Utilities/System
+# Group: Utilities/System
 %if %build_on_obs == 1
 License: GPL-2.0+
 %else
@@ -42,7 +45,6 @@ BuildRequires: -post-build-checks
 Requires: rpm >= 3.0.2
 Requires: indimail-mta >= 2.0
 Conflicts: ezmlm-idx
-Buildroot: %{_tmppath}/%{name}-%{version}-root
 
 %description
 ezmlm lets users set up their own mailing lists within qmail's address
