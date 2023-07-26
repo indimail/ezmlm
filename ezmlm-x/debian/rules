@@ -23,6 +23,7 @@ rm=/bin/rm
 prefix=/usr
 mandir=${prefix}/share/man
 sysconfdir=$(shell head -1 conf-sysconfdir)
+libexecdir=$(shell head -1 conf-libexec)
 version=$(shell cat conf-version)
 email=$(shell cat conf-email)
 DESTDIR=$(CURDIR)/debian/ezmlm.tmp

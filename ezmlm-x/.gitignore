@@ -31,3 +31,4 @@ Makevars.
 PKGBUILD
 ezmlm.changes
 install
+checkrecipient-ezmlm

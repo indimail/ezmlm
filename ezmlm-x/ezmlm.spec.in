@@ -14,6 +14,7 @@
 %endif
 %global _prefix            @prefix@
 %global sysconfdir         @sysconfdir@
+%global libexecdir         @libexecdir@
 %global mandir             @mandir@
 %global ezdocdir           @prefix@/share/doc/ezmlm
 %if %build_on_obs == 1
@@ -138,6 +139,7 @@ find %{buildroot}%{mandir} -type f -exec gzip -q {} \;
 %{_prefix}/bin/ezmlm-warn
 %{_prefix}/bin/ezmlm-weed
 %{_prefix}/sbin/ezmlm-queue
+%{libexecdir}/ezmlm/checkrecipient-ezmlm
 %{mandir}/man1/ezmlm-list.1.*
 %{mandir}/man1/ezmlm-make.1.*
 %{mandir}/man1/ezmlm-manage.1.*

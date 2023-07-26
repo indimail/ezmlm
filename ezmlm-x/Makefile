@@ -7,6 +7,7 @@ edit = sed \
 	-e 's}@prefix\@}$(prefix)}g' \
 	-e 's}@qmaildir\@}$(qmaildir)}g' \
 	-e 's}@sysconfdir\@}$(sysconfdir)}g' \
+	-e 's}@libexecdir\@}$(libexecdir)}g' \
 	-e 's}@mandir\@}$(mandir)}g' \
 	-e 's,@email\@,$(email),g' \
 	-e 's}@version\@}$(version)}g' \
@@ -178,7 +179,8 @@ compile issub.c issub.h uint32.h
 
 it: \
 ezmlm-make ezmlm-manage ezmlm-send ezmlm-reject ezmlm-return \
-ezmlm-warn ezmlm-weed ezmlm-list ezmlm-sub ezmlm-unsub ezmlm-queue
+ezmlm-warn ezmlm-weed ezmlm-list ezmlm-sub ezmlm-unsub ezmlm-queue \
+checkrecipient-ezmlm
 
 load: \
 make-load warn-auto.sh systype
@@ -224,6 +226,8 @@ default install conf-bin
 	./install $(DESTDIR)"`head -1 conf-bin`" < BIN
 	mkdir -p $(DESTDIR)"`head -n 1 conf-sbin`"
 	./install $(DESTDIR)"`head -1 conf-sbin`" < SBIN
+	mkdir -p $(DESTDIR)"`head -n 1 conf-libexec`/ezmlm"
+	./install $(DESTDIR)"`head -1 conf-libexec`/ezmlm" < LIBEXEC
 	mkdir -p $(DESTDIR)$(mandir)
 	./install $(DESTDIR)$(mandir) < MAN
 
@@ -271,6 +275,15 @@ warn-auto.sh
 	| sed s}QMAIL}"`head -1 conf-qmail`"}g \
 	> ezmlm-queue
 	chmod 755 ezmlm-queue
+
+checkrecipient-ezmlm: warn-auto.sh checkrecipient-ezmlm.sh \
+conf-prefix conf-sysconfdir conf-libexec
+	cat warn-auto.sh checkrecipient-ezmlm.sh \
+	| sed s}PREFIX}"`head -1 conf-prefix`"}g \
+	| sed s}SYSCONFDIR}"`head -1 conf-sysconfdir`"}g \
+	| sed s}LIBEXEC}"`head -1 conf-libexec`"}g \
+	> checkrecipient-ezmlm
+	chmod 755 checkrecipient-ezmlm
 
 ezmlm-queue.1: ezmlm-queue.9 conf-sysconfdir conf-qmail
 	cat ezmlm-queue.9 \
