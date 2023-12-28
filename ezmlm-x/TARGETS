@@ -18,7 +18,6 @@ ezmlm-sub
 ezmlm-unsub
 ezmlm-warn
 ezmlm-weed
-ezmlm.spec
 find-systype
 load
 make-compile

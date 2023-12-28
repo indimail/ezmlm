@@ -22,14 +22,13 @@ char *addr;
   if (!stralloc_cats(&line," ")) return;
   if (!stralloc_cats(&line,event)) return;
   if (!stralloc_cats(&line," ")) return;
-  while (ch = *addr++) {
+  while ((ch = *addr++)) {
     if ((ch < 33) || (ch > 126)) ch = '?';
     if (!stralloc_append(&line,&ch)) return;
   }
   if (!stralloc_cats(&line,"\n")) return;
 
-  fd = open_append("Log");
-  if (fd == -1) return;
+  if ((fd = open_append("Log")) == -1) return;
   substdio_fdbuf(&ss,write,fd,buf,sizeof(buf));
   substdio_putflush(&ss,line.s,line.len);
   close(fd);

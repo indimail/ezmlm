@@ -186,7 +186,7 @@ stralloc outlocal = {0};
 char msginbuf[1024];
 substdio ssmsgin;
 
-void main(argc,argv)
+int main(argc,argv)
 int argc;
 char **argv;
 {

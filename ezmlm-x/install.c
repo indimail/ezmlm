@@ -145,10 +145,8 @@ char            buf[256];
 substdio        in = SUBSTDIO_FDBUF(read, 0, buf, sizeof (buf));
 stralloc        line = { 0 };
 
-void
-main(argc, argv)
-	int             argc;
-	char          **argv;
+int
+main(int argc, char **argv)
 {
 	int             match;
 
@@ -164,4 +162,5 @@ main(argc, argv)
 		if (!match)
 			_exit(0);
 	}
+	return 0;
 }

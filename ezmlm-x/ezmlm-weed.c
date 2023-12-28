@@ -41,7 +41,7 @@ int flagsr = 0;
 int flagas = 0;
 int flagbw = 0;
 
-void main()
+int main()
 {
   for (;;) {
     get(&line);

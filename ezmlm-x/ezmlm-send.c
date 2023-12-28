@@ -138,7 +138,7 @@ void numwrite()
 
 stralloc mydtline = {0};
 
-void main(argc,argv)
+int main(argc,argv)
 int argc;
 char **argv;
 {
@@ -320,4 +320,5 @@ char **argv;
       numwrite();
       strerr_die2x(111,FATAL,"temporary qmail-queue error");
   }
+  return 0;
 }

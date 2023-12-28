@@ -22,7 +22,7 @@ stralloc line = {0};
 
 char fn[14] = "subscribers/?";
 
-void main(argc,argv)
+int main(argc,argv)
 int argc;
 char **argv;
 {

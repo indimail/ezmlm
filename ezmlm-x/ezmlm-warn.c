@@ -190,7 +190,7 @@ int flagw;
     strerr_die6sys(111,FATAL,"unable to remove ",dir,"/",fn.s,": ");
 }
 
-void main(argc,argv)
+int main(argc,argv)
 int argc;
 char **argv;
 {
@@ -229,7 +229,7 @@ char **argv;
   if (!bouncedir)
     strerr_die4sys(111,FATAL,"unable to open ",dir,"/bounce: ");
 
-  while (d = readdir(bouncedir)) {
+  while ((d = readdir(bouncedir))) {
     if (str_equal(d->d_name,".")) continue;
     if (str_equal(d->d_name,"..")) continue;
 

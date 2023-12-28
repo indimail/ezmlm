@@ -6,7 +6,7 @@
 #define FATAL "ezmlm-unsub: fatal: "
 #define WARNING "ezmlm-unsub: warning: "
 
-void main(argc,argv)
+int main(argc,argv)
 int argc;
 char **argv;
 {
@@ -20,7 +20,7 @@ char **argv;
     strerr_die4sys(111,FATAL,"unable to switch to ",dir,": ");
 
   argv += 2;
-  while (addr = *argv++)
+  while ((addr = *argv++))
     switch(subscribe(addr,0)) {
       case -1:
 	strerr_die1(111,FATAL,&subscribe_err);
