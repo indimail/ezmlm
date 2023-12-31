@@ -44,7 +44,7 @@ build-stamp:
 	echo Description=\"Easy Mailing List Manager for indimail-mta\"; \
 	echo ezmlm_version=$(version); \
 	echo ID=ezmlm; \
-	echo HOME_URL="https://github.com/mbhangui/ezmlm"; \
+	echo HOME_URL="https://github.com/indimail/ezmlm"; \
 	echo PACKAGE_BUGREPORT=\"'$(email)'\"; \
 	) > ezmlm-release
 	touch build-stamp

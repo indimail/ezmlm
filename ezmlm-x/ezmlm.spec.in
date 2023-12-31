@@ -108,7 +108,7 @@ echo "NAME=%{name}"
 echo "Description=\"Easy MailingList Manager for indimail-mta\""
 echo "ezmlm_version="%{version}-%{release}""
 echo "ID=%{name}"
-echo "HOME_URL=\"https://github.com/mbhangui/ezmlm\""
+echo "HOME_URL=\"https://github.com/indimail/ezmlm\""
 echo "PACKAGE_BUGREPORT=\"'@email@'\""
 ) > %{name}-release
 
