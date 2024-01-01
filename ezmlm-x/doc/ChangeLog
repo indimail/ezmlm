@@ -1,12 +1,14 @@
-*
-Release 1.1 Start 24/07/2023
+* Tue Jan 02 2024 00:09:59 +0530 Manvendra Bhangui <ezmlm@indimail.org> 7.2.3-1.1%{?dist}
+Release 1.1 Start 24/07/2023 End 31/12/2023
 - 24/07/2023
 1.  added checkrecipient-ezmlm Pluggable Address Module for qmail-smtpd
     recipient extension
 - 22/10/2023
 2. checkrecipient-ezmlm: fix for ezmlm list addresses
+- 28/10/2023
+3. Fixed compiler warnings
 - 31/12/2023
-3. moved repository to indimail org
+4. moved repository to indimail org
 
 *
 Release 1.0 Start 06/10/2018
