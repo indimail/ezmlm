@@ -2,18 +2,18 @@
 
 **Current Compilation Status**
 
-[![ezmlm Ubuntu, Mac OSX CI](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-c-cpp.yml/badge.svg)](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-c-cpp.yml)
-[![ezmlm FreeBSD CI](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-freebsd.yml/badge.svg)](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-freebsd.yml)
+[![ezmlm Ubuntu, Mac OSX CI](https://github.com/indimail/ezmlm/actions/workflows/ezmlm-c-cpp.yml/badge.svg)](https://github.com/indimail/ezmlm/actions/workflows/ezmlm-c-cpp.yml)
+[![ezmlm FreeBSD CI](https://github.com/indimail/ezmlm/actions/workflows/ezmlm-freebsd.yml/badge.svg)](https://github.com/indimail/ezmlm/actions/workflows/ezmlm-freebsd.yml)
 
 # ezmlm
 
-[ezmlm fork](https://cr.yp.to/ezmlm.html) with support for [indimail-mta's](https://github.com/mbhangui/indimail-mta) multi-queue architecture.
+[ezmlm fork](https://cr.yp.to/ezmlm.html) with support for [indimail-mta's](https://github.com/indimail/indimail-mta) multi-queue architecture.
 
 This has been forked to adapt it to work with indimail-mta's multi-queue architecture. The three major changes that this version has made after the fork are
 
 1. Ability to set environment variables in /etc/indimail/ezmlm/global\_vars. You can create any file in this directory. The file name becomes the environment variable and the file content becomes the value of environment variable.
-2. New queue program ezmlm-queue which can use qmail-qmqpc to use [QMQP](http://cr.yp.to/proto/qmqp.html) protocol, [qmail-multi](https://github.com/mbhangui/indimail-virtualdomains/wiki/IndiMail#qmail-multi) to queue mails to indimail's multi-queue instance or [qmail-queue](https://github.com/mbhangui/indimail-virtualdomains/wiki/IndiMail#qmail-queue) to queue mails to any [qmta](https://github.com/mbhangui/indimail-virtualdomains/wiki/IndiMail#qmta---using-a-minimal-standalone-qmta-send-mta) / [qmail](http://cr.yp.to/qmail.html) / [netqmail](http://netqmail.org/) / [notqmail](https://github.com/notqmail/notqmail) instance.
-3. Use all common functions from [libqmail](https://github.com/mbhangui/libqmail) library.
+2. New queue program ezmlm-queue which can use qmail-qmqpc to use [QMQP](http://cr.yp.to/proto/qmqp.html) protocol, [qmail-multi](https://github.com/indimail/indimail-virtualdomains/wiki/IndiMail#qmail-multi) to queue mails to indimail's multi-queue instance or [qmail-queue](https://github.com/indimail/indimail-virtualdomains/wiki/IndiMail#qmail-queue) to queue mails to any [qmta](https://github.com/indimail/indimail-virtualdomains/wiki/IndiMail#qmta---using-a-minimal-standalone-qmta-send-mta) / [qmail](http://cr.yp.to/qmail.html) / [netqmail](http://netqmail.org/) / [notqmail](https://github.com/notqmail/notqmail) instance.
+3. Use all common functions from [libqmail](https://github.com/indimail/libqmail) library.
 
 ezmlm is an easy-to-use, high-speed mailing list manager for qmail.
 
@@ -41,7 +41,7 @@ ezmlm uses functions from libqmail library. libqmail uses GNU autotools. You nee
 
 ```
 $ cd /usr/local/src
-$ git clone https://github.com/mbhangui/libqmail.git
+$ git clone https://github.com/indimail/libqmail.git
 $ cd /usr/local/src/libqmail
 $ ./default.configure
 $ make
@@ -85,7 +85,7 @@ The build below depends on several Makefiles. For the build to operate without e
 
 ```
 $ cd /usr/local/src
-$ git clone https://github.com/mbhangui/ezmlm.git
+$ git clone https://github.com/indimail/ezmlm.git
 $ cd /usr/local/src/ezmlm/ezmlm-x
 $ ./default.configure
 $ make or ./qmake
@@ -96,7 +96,7 @@ $ sudo make install-strip
 
 **[Build Status on](https://build.opensuse.org/project/monitor/home:mbhangui) [Open Build Service](https://build.opensuse.org/project/show/home:mbhangui)**
 
-[![ezmlm obs trigger](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-obs.yml/badge.svg)](https://github.com/mbhangui/ezmlm/actions/workflows/ezmlm-obs.yml)
+[![ezmlm obs trigger](https://github.com/indimail/ezmlm/actions/workflows/ezmlm-obs.yml/badge.svg)](https://github.com/indimail/ezmlm/actions/workflows/ezmlm-obs.yml)
 
 [![ezmlm](https://build.opensuse.org/projects/home:mbhangui/packages/ezmlm/badge.svg?type=percent)](https://build.opensuse.org/package/show/home:mbhangui/ezmlm)
 
@@ -198,4 +198,4 @@ There is also a [Project Tracker](http://sourceforge.net/tracker/?group_id=23068
 
 ## CREDITS
 
-ezmlm is mailing list management software (MLM) by Daniel J. Bernstein. This version of ezmlm has been modified from the original to use re-usable functions from [libqmail](https://github.com/mbhangui/libqmail) and work with [indimail-mta](https://github.com/mbhangui/indimail-mta).
+ezmlm is mailing list management software (MLM) by Daniel J. Bernstein. This version of ezmlm has been modified from the original to use re-usable functions from [libqmail](https://github.com/indimail/libqmail) and work with [indimail-mta](https://github.com/indimail/indimail-mta).
