@@ -285,8 +285,10 @@ conf-prefix conf-sysconfdir conf-libexec
 	> checkrecipient-ezmlm
 	chmod 755 checkrecipient-ezmlm
 
-ezmlm-queue.1: ezmlm-queue.9 conf-sysconfdir conf-qmail
+ezmlm-queue.1: ezmlm-queue.9 conf-sysconfdir conf-qmail \
+conf-prefix
 	cat ezmlm-queue.9 \
+	| sed s}PREFIX}"`head -1 conf-prefix`"}g \
 	| sed s}SYSCONFDIR}"`head -1 conf-sysconfdir`"}g \
 	| sed s}QMAILHOME}"`head -1 conf-qmail`"}g \
 	> ezmlm-queue.1
