@@ -9,6 +9,8 @@ Release 1.1 Start 24/07/2023 End 31/12/2023
 3. Fixed compiler warnings
 - 31/12/2023
 4. moved repository to indimail org
+- 10/05/2024
+5. qmail.c: changed for envdir.c change in libqmail
 
 *
 Release 1.0 Start 06/10/2018

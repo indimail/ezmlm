@@ -18,7 +18,8 @@ int qmail_open(struct qmail *qq)
 {
   int pim[2], pie[2];
   int pic[2], i, unreadable = 0, errfd; /*- custom message */
-  char *x, *err, *binqqargs[2] = { 0, 0 };
+  const char *x, *err;
+  char *binqqargs[2] = { 0, 0 };
   char **e, **orig_env;
   char errbuf[256];
   substdio sserr;
