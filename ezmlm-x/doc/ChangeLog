@@ -1,3 +1,12 @@
+* Wed Aug 07 2024 03:41:56 +0000 Manvendra Bhangui <ezmlm@indimail.org>
+Release 1.1 Start 10/05/2024 End 06/08/2024
+- 31/12/2023
+1. moved repository to indimail org
+- 10/05/2024
+2. qmail.c: changed for envdir.c change in libqmail
+- 06/08/2024
+3. qmail.c: fix compilation error for envdir call
+
 * Tue Jan 02 2024 00:09:59 +0530 Manvendra Bhangui <ezmlm@indimail.org> 7.2.3-1.1%{?dist}
 Release 1.1 Start 24/07/2023 End 31/12/2023
 - 24/07/2023
@@ -7,12 +16,6 @@ Release 1.1 Start 24/07/2023 End 31/12/2023
 2. checkrecipient-ezmlm: fix for ezmlm list addresses
 - 28/10/2023
 3. Fixed compiler warnings
-- 31/12/2023
-4. moved repository to indimail org
-- 10/05/2024
-5. qmail.c: changed for envdir.c change in libqmail
-- 06/08/2024
-6. qmail.c: fix compilation error for envdir call
 
 *
 Release 1.0 Start 06/10/2018
