@@ -31,7 +31,7 @@ jobs:
         cd libqmail; ./default.configure; make; sudo make install-strip
     - name: prepare obs
       run: cd ezmlm-x; ./prepare_obs ezmlm
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         name: ezmlm
         path: ~/stage
