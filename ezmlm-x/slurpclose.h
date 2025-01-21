@@ -1,6 +1,10 @@
+/*
+ * $Id: $
+ */
 #ifndef SLURPCLOSE_H
 #define SLURPCLOSE_H
+#include <stralloc.h>
 
-extern int slurpclose();
+extern int      slurpclose(int, stralloc *, int);
 
 #endif

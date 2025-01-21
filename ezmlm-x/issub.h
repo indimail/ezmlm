@@ -1,3 +1,6 @@
+/*
+ * $Id: $
+ */
 #ifndef ISSUB_H
 #define ISSUB_H
 
@@ -5,6 +8,10 @@
 
 extern struct strerr issub_err;
 
-extern int issub();
+extern int      issub(char *);
 
 #endif
+
+/*
+ * $Log: $
+ */

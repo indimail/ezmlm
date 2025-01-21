@@ -1,3 +1,6 @@
+/*
+ * $Id: $
+ */
 #ifndef SUBSCRIBE_H
 #define SUBSCRIBE_H
 
@@ -5,6 +8,10 @@
 
 extern struct strerr subscribe_err;
 
-extern int subscribe();
+extern int      subscribe(char *, int);
 
 #endif
+
+/*
+ * $Log: $
+ */
