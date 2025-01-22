@@ -1,5 +1,5 @@
 /*
- * $Id: $
+ * $Id: log.c,v 1.1 2025-01-22 11:21:30+05:30 Cprogrammer Exp mbhangui $
  */
 #include <unistd.h>
 #include "substdio.h"
@@ -46,5 +46,8 @@ ezlog(char *event, char *addr)
 }
 
 /*
- * $Log: $
+ * $Log: log.c,v $
+ * Revision 1.1  2025-01-22 11:21:30+05:30  Cprogrammer
+ * Fixes for gcc14
+ *
  */

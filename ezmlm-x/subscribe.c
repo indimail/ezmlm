@@ -1,5 +1,5 @@
 /*
- * $Id: $
+ * $Id: subscribe.c,v 1.1 2025-01-22 11:24:35+05:30 Cprogrammer Exp mbhangui $
  */
 #include <unistd.h>
 #include "stralloc.h"
@@ -162,5 +162,8 @@ subscribe(char *userhost, int flagadd)
 }
 
 /*
- * $Log: $
+ * $Log: subscribe.c,v $
+ * Revision 1.1  2025-01-22 11:24:35+05:30  Cprogrammer
+ * Initial revision
+ *
  */

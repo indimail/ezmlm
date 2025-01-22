@@ -1,5 +1,5 @@
 /*
- * $Id: $
+ * $Id: ezmlm-manage.c,v 1.1 2025-01-22 11:21:28+05:30 Cprogrammer Exp mbhangui $
  */
 #include <unistd.h>
 #include <sys/types.h>
@@ -366,9 +366,11 @@ main(int argc, char **argv)
 	copy("text/top");
 	if (str_equal(action, "-subscribe"))
 		copy("text/sub-confirm");
-	else if (str_equal(action, "-unsubscribe"))
+	else
+	if (str_equal(action, "-unsubscribe"))
 		copy("text/unsub-confirm");
-	else if (str_start(action, "-sc.")) {
+	else
+	if (str_start(action, "-sc.")) {
 		if (!flaghashok)
 			copy("text/sub-bad");
 		else
@@ -385,7 +387,8 @@ main(int argc, char **argv)
 				copy("text/sub-nop");
 				break;
 			}
-	} else if (str_start(action, "-uc.")) {
+	} else
+	if (str_start(action, "-uc.")) {
 		if (!flaghashok)
 			copy("text/unsub-bad");
 		else
@@ -402,7 +405,8 @@ main(int argc, char **argv)
 				copy("text/unsub-nop");
 				break;
 			}
-	} else if (str_start(action, "-get.")) {
+	} else
+	if (str_start(action, "-get.")) {
 		unsigned long   u;
 		struct stat     st;
 		char            ch;
@@ -430,7 +434,8 @@ main(int argc, char **argv)
 		else {
 			if (fstat(fd, &st) == -1)
 				copy("text/get-bad");
-			else if (!(st.st_mode & 0100))
+			else
+			if (!(st.st_mode & 0100))
 				copy("text/get-bad");
 			else {
 				substdio_fdbuf(&sstext, (ssize_t(*)(int, char *, size_t)) read, fd, textbuf, sizeof (textbuf));
@@ -488,5 +493,8 @@ main(int argc, char **argv)
 }
 
 /*
- * $Log: $
+ * $Log: ezmlm-manage.c,v $
+ * Revision 1.1  2025-01-22 11:21:28+05:30  Cprogrammer
+ * Fixes for gcc14
+ *
  */

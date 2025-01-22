@@ -1,5 +1,5 @@
 /*
- * $Id: $
+ * $Id: getconf.c,v 1.1 2025-01-22 11:21:30+05:30 Cprogrammer Exp mbhangui $
  */
 #include "stralloc.h"
 #include "slurp.h"
@@ -63,5 +63,8 @@ getconf_line(stralloc *sa, char *fn, int flagrequired, char *fatal, char *dir)
 }
 
 /*
- * $Log: $
+ * $Log: getconf.c,v $
+ * Revision 1.1  2025-01-22 11:21:30+05:30  Cprogrammer
+ * Fixes for gcc14
+ *
  */

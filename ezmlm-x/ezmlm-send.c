@@ -1,5 +1,5 @@
 /*
- * $Id: $
+ * $Id: ezmlm-send.c,v 1.1 2025-01-22 11:21:28+05:30 Cprogrammer Exp mbhangui $
  */
 #include <unistd.h>
 #include <sys/types.h>
@@ -344,5 +344,8 @@ main(int argc, char **argv)
 }
 
 /*
- * $Log: $
+ * $Log: ezmlm-send.c,v $
+ * Revision 1.1  2025-01-22 11:21:28+05:30  Cprogrammer
+ * Fixes for gcc14
+ *
  */

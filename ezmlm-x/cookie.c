@@ -1,5 +1,5 @@
 /*
- * $Id: $
+ * $Id: cookie.c,v 1.1 2025-01-22 11:21:30+05:30 Cprogrammer Exp mbhangui $
  */
 #include "cookie.h"
 #include "str.h"
@@ -43,5 +43,8 @@ cookie(char *hash, char *key, size_t keylen, char *date, char *addr, char *actio
 }
 
 /*
- * $Log: $
+ * $Log: cookie.c,v $
+ * Revision 1.1  2025-01-22 11:21:30+05:30  Cprogrammer
+ * Fixes for gcc14
+ *
  */

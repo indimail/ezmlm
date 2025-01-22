@@ -1,5 +1,5 @@
 /*
- * $Id: $
+ * $Id: slurpclose.c,v 1.1 2025-01-22 11:21:29+05:30 Cprogrammer Exp mbhangui $
  */
 #include <unistd.h>
 #include "stralloc.h"
@@ -28,5 +28,8 @@ slurpclose(int fd, stralloc *sa, int bufsize)
 }
 
 /*
- * $Log: $
+ * $Log: slurpclose.c,v $
+ * Revision 1.1  2025-01-22 11:21:29+05:30  Cprogrammer
+ * Fixes for gcc14
+ *
  */

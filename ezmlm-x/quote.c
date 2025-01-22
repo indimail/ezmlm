@@ -1,5 +1,5 @@
 /*
- * $Id: $
+ * $Id: quote.c,v 1.1 2025-01-22 11:21:29+05:30 Cprogrammer Exp mbhangui $
  */
 #include "stralloc.h"
 #include "str.h"
@@ -91,5 +91,8 @@ quote2(stralloc *sa, char *s)
 }
 
 /*
- * $Log: $
+ * $Log: quote.c,v $
+ * Revision 1.1  2025-01-22 11:21:29+05:30  Cprogrammer
+ * Fixes for gcc14
+ *
  */

@@ -1,5 +1,5 @@
 /*
- * $Log: $
+ * $Id: issub.c,v 1.1 2025-01-22 11:24:58+05:30 Cprogrammer Exp mbhangui $
  */
 #include <unistd.h>
 #include "stralloc.h"
@@ -103,5 +103,8 @@ issub(char *userhost)
 }
 
 /*
- * $Log: $
+ * $Log: issub.c,v $
+ * Revision 1.1  2025-01-22 11:24:58+05:30  Cprogrammer
+ * Initial revision
+ *
  */

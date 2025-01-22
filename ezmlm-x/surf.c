@@ -1,5 +1,5 @@
 /*
- * $Id: $
+ * $Id: surf.c,v 1.1 2025-01-22 11:21:29+05:30 Cprogrammer Exp mbhangui $
  *
  * 19970320, overlap allowed 19970406 
  */
@@ -38,5 +38,8 @@ surf(uint32 out[8], uint32 in[12], uint32 seed[32])
 }
 
 /*
- * $Log: $
+ * $Log: surf.c,v $
+ * Revision 1.1  2025-01-22 11:21:29+05:30  Cprogrammer
+ * Fixes for gcc14
+ *
  */

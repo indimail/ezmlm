@@ -1,5 +1,5 @@
 /*
- * $Id: $
+ * $Id: install.c,v 1.1 2025-01-22 11:24:17+05:30 Cprogrammer Exp mbhangui $
  */
 #include <unistd.h>
 #include <sys/types.h>
@@ -167,5 +167,8 @@ main(int argc, char **argv)
 }
 
 /*
- * $Log: $
+ * $Log: install.c,v $
+ * Revision 1.1  2025-01-22 11:24:17+05:30  Cprogrammer
+ * Initial revision
+ *
  */

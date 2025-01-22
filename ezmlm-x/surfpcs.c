@@ -1,5 +1,5 @@
 /*
- * $Id: $
+ * $Id: surfpcs.c,v 1.1 2025-01-22 11:21:29+05:30 Cprogrammer Exp mbhangui $
  *
  * XXX: this needs testing 
  */
@@ -66,5 +66,8 @@ surfpcs_out(surfpcs *s, unsigned char h[32])
 }
 
 /*
- * $Log: $
+ * $Log: surfpcs.c,v $
+ * Revision 1.1  2025-01-22 11:21:29+05:30  Cprogrammer
+ * Fixes for gcc14
+ *
  */

@@ -1,5 +1,5 @@
 /*
- * $Id: $
+ * $Id: ezmlm-unsub.c,v 1.1 2025-01-22 11:21:30+05:30 Cprogrammer Exp mbhangui $
  */
 #include <unistd.h>
 #include "strerr.h"
@@ -37,5 +37,8 @@ main(int argc, char **argv)
 }
 
 /*
- * $Log: $
+ * $Log: ezmlm-unsub.c,v $
+ * Revision 1.1  2025-01-22 11:21:30+05:30  Cprogrammer
+ * Fixes for gcc14
+ *
  */

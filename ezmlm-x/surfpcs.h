@@ -1,5 +1,5 @@
 /*
- * $Id: $
+ * $Id: surfpcs.h,v 1.1 2025-01-22 11:21:31+05:30 Cprogrammer Exp mbhangui $
  */
 #ifndef SURFPCS_H
 #define SURFPCS_H
@@ -24,5 +24,8 @@ extern void     surfpcs_out(surfpcs *s, unsigned char h[32]);
 #endif
 
 /*
- * $Log: $
+ * $Log: surfpcs.h,v $
+ * Revision 1.1  2025-01-22 11:21:31+05:30  Cprogrammer
+ * Fixes for gcc14
+ *
  */

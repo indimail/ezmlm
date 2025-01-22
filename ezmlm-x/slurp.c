@@ -1,5 +1,5 @@
 /*
- * $Id: $
+ * $Id: slurp.c,v 1.1 2025-01-22 11:21:29+05:30 Cprogrammer Exp mbhangui $
  */
 #include <sys/types.h>
 #include "slurpclose.h"
@@ -24,5 +24,8 @@ slurp(char *fn, stralloc *sa, size_t bufsize)
 }
 
 /*
- * $Log: $
+ * $Log: slurp.c,v $
+ * Revision 1.1  2025-01-22 11:21:29+05:30  Cprogrammer
+ * Fixes for gcc14
+ *
  */

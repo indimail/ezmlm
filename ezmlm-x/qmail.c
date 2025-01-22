@@ -1,5 +1,5 @@
 /*
- * $Id: $
+ * $Id: qmail.c,v 1.1 2025-01-22 11:21:28+05:30 Cprogrammer Exp mbhangui $
  */
 #include <unistd.h>
 #include <sys/types.h>
@@ -89,7 +89,8 @@ qmail_open(struct qmail *qq)
 				environ = e;
 			else
 				environ = orig_env;
-		} else if (errno != error_noent)
+		} else
+		if (errno != error_noent)
 			_exit(55);
 		if (!binqqargs[0])
 			binqqargs[0] = env_get("QMAILQUEUE");
@@ -204,5 +205,8 @@ qmail_close(struct qmail *qq)
 }
 
 /*
- * $Log: $
+ * $Log: qmail.c,v $
+ * Revision 1.1  2025-01-22 11:21:28+05:30  Cprogrammer
+ * Fixes for gcc14
+ *
  */

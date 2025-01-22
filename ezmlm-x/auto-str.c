@@ -1,17 +1,5 @@
 /*
- * $Log: auto-str.c,v $
- * Revision 1.8  2020-11-24 13:44:02+05:30  Cprogrammer
- * removed exit.h
- *
- * Revision 1.7  2020-06-17 16:58:35+05:30  Cprogrammer
- * make output readable
- *
- * Revision 1.6  2004-10-22 15:34:20+05:30  Cprogrammer
- * replaced readwrite.h with unistd.h
- *
- * Revision 1.5  2004-07-17 21:15:59+05:30  Cprogrammer
- * added RCS log
- *
+ * $Id: auto-str.c,v 1.1 2025-01-22 11:21:30+05:30 Cprogrammer Exp mbhangui $
  */
 #include <ctype.h>
 #include <unistd.h>
@@ -79,3 +67,21 @@ main(int argc, char **argv)
 	/*- Not reached */
 	return(0);
 }
+/*
+ * $Log: auto-str.c,v $
+ * Revision 1.1  2025-01-22 11:21:30+05:30  Cprogrammer
+ * Fixes for gcc14
+ *
+ * Revision 1.8  2020-11-24 13:44:02+05:30  Cprogrammer
+ * removed exit.h
+ *
+ * Revision 1.7  2020-06-17 16:58:35+05:30  Cprogrammer
+ * make output readable
+ *
+ * Revision 1.6  2004-10-22 15:34:20+05:30  Cprogrammer
+ * replaced readwrite.h with unistd.h
+ *
+ * Revision 1.5  2004-07-17 21:15:59+05:30  Cprogrammer
+ * added RCS log
+ *
+ */

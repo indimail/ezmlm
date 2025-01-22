@@ -1,5 +1,5 @@
 /*
- * $Id: $
+ * $Id: qmail.h,v 1.1 2025-01-22 11:21:31+05:30 Cprogrammer Exp mbhangui $
  */
 #ifndef QMAIL_H
 #define QMAIL_H
@@ -42,5 +42,8 @@ extern unsigned long qmail_qp(struct qmail *);
 #endif
 
 /*
- * $Log: $
+ * $Log: qmail.h,v $
+ * Revision 1.1  2025-01-22 11:21:31+05:30  Cprogrammer
+ * Fixes for gcc14
+ *
  */
