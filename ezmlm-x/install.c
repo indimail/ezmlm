@@ -1,3 +1,6 @@
+/*
+ * $Id: install.c,v 1.1 2025-01-22 11:24:17+05:30 Cprogrammer Exp mbhangui $
+ */
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -92,8 +95,7 @@ doit(line)
 		scan_ulong(gidstr, &gid);
 	scan_8long(modestr, &mode);
 
-	switch (*type)
-	{
+	switch (*type) {
 	case 'd':
 		if (mkdir(target.s, 0700) == -1)
 			if (errno != error_exist)
@@ -109,14 +111,13 @@ doit(line)
 		fdin = open_read(name);
 		if (fdin == -1)
 			strerr_die4sys(111, FATAL, "unable to read ", name, ": ");
-		substdio_fdbuf(&ssin, read, fdin, inbuf, sizeof (inbuf));
+		substdio_fdbuf(&ssin, (ssize_t(*)(int, char *, size_t)) read, fdin, inbuf, sizeof (inbuf));
 
 		if ((fdout = open_trunc(target.s)) == -1)
 			strerr_die4sys(111, FATAL, "unable to write ", target.s, ": ");
-		substdio_fdbuf(&ssout, write, fdout, outbuf, sizeof (outbuf));
+		substdio_fdbuf(&ssout, (ssize_t(*)(int, char *, size_t)) write, fdout, outbuf, sizeof (outbuf));
 
-		switch (substdio_copy(&ssout, &ssin))
-		{
+		switch (substdio_copy(&ssout, &ssin)) {
 		case -2:
 			strerr_die4sys(111, FATAL, "unable to read ", name, ": ");
 		case -3:
@@ -142,7 +143,7 @@ doit(line)
 }
 
 char            buf[256];
-substdio        in = SUBSTDIO_FDBUF(read, 0, buf, sizeof (buf));
+substdio        in = SUBSTDIO_FDBUF((ssize_t(*)(int, char *, size_t)) read, 0, buf, sizeof (buf));
 stralloc        line = { 0 };
 
 int
@@ -164,3 +165,10 @@ main(int argc, char **argv)
 	}
 	return 0;
 }
+
+/*
+ * $Log: install.c,v $
+ * Revision 1.1  2025-01-22 11:24:17+05:30  Cprogrammer
+ * Initial revision
+ *
+ */

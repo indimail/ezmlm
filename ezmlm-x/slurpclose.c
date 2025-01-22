@@ -1,19 +1,35 @@
+/*
+ * $Id: slurpclose.c,v 1.1 2025-01-22 11:21:29+05:30 Cprogrammer Exp mbhangui $
+ */
 #include <unistd.h>
 #include "stralloc.h"
 #include "slurpclose.h"
 #include "error.h"
 
-int slurpclose(fd,sa,bufsize)
-int fd;
-stralloc *sa;
-int bufsize;
+int
+slurpclose(int fd, stralloc *sa, int bufsize)
 {
-  int r;
-  for (;;) {
-    if (!stralloc_readyplus(sa,bufsize)) { close(fd); return -1; }
-    r = read(fd,sa->s + sa->len,bufsize);
-    if (r == -1) if (errno == error_intr) continue;
-    if (r <= 0) { close(fd); return r; }
-    sa->len += r;
-  }
+	int             r;
+	for (;;) {
+		if (!stralloc_readyplus(sa, bufsize)) {
+			close(fd);
+			return -1;
+		}
+		r = read(fd, sa->s + sa->len, bufsize);
+		if (r == -1)
+			if (errno == error_intr)
+				continue;
+		if (r <= 0) {
+			close(fd);
+			return r;
+		}
+		sa->len += r;
+	}
 }
+
+/*
+ * $Log: slurpclose.c,v $
+ * Revision 1.1  2025-01-22 11:21:29+05:30  Cprogrammer
+ * Fixes for gcc14
+ *
+ */

@@ -6,6 +6,8 @@ Release 1.1 Start 10/05/2024 End 06/08/2024
 2. qmail.c: changed for envdir.c change in libqmail
 - 06/08/2024
 3. qmail.c: fix compilation error for envdir call
+- 22/01/2025
+4. Fixes for gcc14
 
 * Tue Jan 02 2024 00:09:59 +0530 Manvendra Bhangui <ezmlm@indimail.org> 7.2.3-1.1%{?dist}
 Release 1.1 Start 24/07/2023 End 31/12/2023
