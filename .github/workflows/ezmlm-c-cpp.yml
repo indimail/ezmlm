@@ -33,7 +33,7 @@ jobs:
           brew install automake autoconf libtool pkgconfig openssl mysql
         fi
         if [ "${OS}" = "ubuntu-latest" ] ; then
-          sudo apt-get install gcc g++ automake autoconf libtool libssl-dev libmysqlclient-dev
+          sudo apt-get install gcc g++ automake autoconf libtool libssl-dev
         fi
       env:
         OS: ${{ matrix.host }}
